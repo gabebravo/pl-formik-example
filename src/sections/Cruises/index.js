@@ -6,8 +6,8 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { CruisesSchema } from '../Schemas';
-import { CruisesValidation } from '../Validation';
+import { CruisesSchema } from '../shared/schemas';
+import { CruisesValidation } from '../shared/validation';
 
 const useStyles = makeStyles(theme => ({
   root: {

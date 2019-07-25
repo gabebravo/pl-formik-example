@@ -9,8 +9,8 @@ import {
   Typography,
   Button
 } from '@material-ui/core';
-import { UserSchema } from '../Schemas';
-import { UserValidation } from '../Validation';
+import { UserSchema } from '../shared/schemas';
+import { UserValidation } from '../shared/validation';
 import TextField from '../Fields/Text';
 
 const useStyles = makeStyles(theme => ({
@@ -70,36 +70,39 @@ export default function User() {
                     name="firstName"
                     label="First Name"
                     component={TextField}
+                    isRequired
                   />
                   <Field
                     name="lastName"
                     label="Last Name"
                     component={TextField}
+                    isRequired
                   />
                   <Field name="email" label="Email" component={TextField} />
                   <Field
                     name="address.line1"
                     label="Line 1"
                     component={TextField}
+                    isRequired
                   />
                   <Field
                     name="address.city"
                     label="City"
                     component={TextField}
+                    isRequired
                   />
                   <Field
                     name="address.state"
                     label="State"
                     component={TextField}
+                    isRequired
                   />
                   <Field
                     name="address.zip"
                     label="State"
                     component={TextField}
+                    isRequired
                   />
-                  {props.errors.name && (
-                    <div id="feedback">{props.errors.name}</div>
-                  )}
                   <div>
                     <Button
                       variant="outlined"

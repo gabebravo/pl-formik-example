@@ -6,8 +6,8 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { FlightsSchema } from '../Schemas';
-import { FlightsValidation } from '../Validation';
+import { FlightsSchema } from '../shared/schemas';
+import { FlightsValidation } from '../shared/validation';
 
 const useStyles = makeStyles(theme => ({
   root: {

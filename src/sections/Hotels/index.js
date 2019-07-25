@@ -6,8 +6,8 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { HotelsSchema } from '../Schemas';
-import { HotelsValidation } from '../Validation';
+import { HotelsSchema } from '../shared/schemas';
+import { HotelsValidation } from '../shared/validation';
 
 const useStyles = makeStyles(theme => ({
   root: {
