@@ -39,17 +39,20 @@ export default function User() {
     setExpanded(isExpanded ? panel : false);
   };
 
+  const handleSubmit = props => {
+    const { isValid, submitForm, values } = props;
+    submitForm();
+    if (isValid) {
+      // console.log('values:', values);
+    }
+  };
+
   return (
     <div>
       <Formik
         initialValues={UserSchema}
         validationSchema={UserValidation}
-        onSubmit={(values, actions) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            actions.setSubmitting(false);
-          }, 1000);
-        }}
+        onSubmit={values => console.log(JSON.stringify(values, null, 2))}
         render={props => {
           console.log('user props:', props);
           return (
@@ -105,6 +108,7 @@ export default function User() {
                   />
                   <div>
                     <Button
+                      onClick={() => handleSubmit(props)}
                       variant="outlined"
                       color="primary"
                       className={classes.button}

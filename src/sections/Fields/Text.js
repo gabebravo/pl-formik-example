@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { wasTouched, isInvalid } from '../shared/helpers';
+import { wasTouched, isInvalid, getErrorString } from '../shared/helpers';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -29,11 +29,6 @@ export default function Text({
   const classes = useStyles();
   const { label, isRequired = false, section = '' } = props;
 
-  console.log(
-    'touched',
-    touched && touched['address'] && touched['address']['city']
-  );
-
   return (
     <TextField
       {...field}
@@ -41,8 +36,14 @@ export default function Text({
       label={label}
       className={classes.textField}
       margin="normal"
-      error={wasTouched(field.name, touched) && isInvalid(field.name, errors)}
-      helperText={isInvalid(field.name, errors)}
+      error={
+        (wasTouched(field.name, touched) && isInvalid(field.name, errors)) ||
+        false
+      }
+      helperText={
+        (isInvalid(field.name, errors) && getErrorString(field.name, errors)) ||
+        ''
+      }
       required={isRequired}
     />
   );

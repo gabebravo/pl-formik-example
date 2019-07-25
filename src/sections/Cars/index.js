@@ -1,13 +1,17 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, Field } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import {
+  ExpansionPanel,
+  ExpansionPanelDetails,
+  ExpansionPanelSummary,
+  Typography,
+  Button
+} from '@material-ui/core';
 import { CarsSchema } from '../shared/schemas';
 import { CarsValidation } from '../shared/validation';
+import TextField from '../Fields/Text';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -21,6 +25,9 @@ const useStyles = makeStyles(theme => ({
   secondaryHeading: {
     fontSize: theme.typography.pxToRem(15),
     color: theme.palette.text.secondary
+  },
+  button: {
+    margin: theme.spacing(1)
   }
 }));
 
@@ -44,7 +51,7 @@ export default function Cars() {
           }, 1000);
         }}
         render={props => {
-          console.log('props', props);
+          console.log('cars:', props);
           return (
             <ExpansionPanel
               expanded={expanded === 'panel2'}
@@ -59,31 +66,52 @@ export default function Cars() {
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
                 <form onSubmit={props.handleSubmit}>
-                  <input
-                    type="text"
-                    onChange={props.handleChange}
-                    onBlur={props.handleBlur}
-                    value={props.values.name}
+                  <Field
                     name="make"
+                    label="Make"
+                    component={TextField}
+                    isRequired
                   />
-                  <input
-                    type="text"
-                    onChange={props.handleChange}
-                    onBlur={props.handleBlur}
-                    value={props.values.name}
+                  <Field
                     name="model"
+                    label="Model"
+                    component={TextField}
+                    isRequired
                   />
-                  <input
-                    type="text"
-                    onChange={props.handleChange}
-                    onBlur={props.handleBlur}
-                    value={props.values.name}
+                  <Field
                     name="year"
+                    label="Year"
+                    component={TextField}
+                    isRequired
                   />
-                  {props.errors.name && (
-                    <div id="feedback">{props.errors.name}</div>
-                  )}
-                  <button type="submit">Submit</button>
+                  <Field
+                    name="color"
+                    label="Color"
+                    component={TextField}
+                    isRequired
+                  />
+                  <Field
+                    name="pickupCity"
+                    label="Pickup City"
+                    component={TextField}
+                    isRequired
+                  />
+                  <Field
+                    name="dropoffCity"
+                    label="Dropoff City"
+                    component={TextField}
+                    isRequired
+                  />
+                  <div>
+                    <Button
+                      type="submit"
+                      variant="outlined"
+                      color="primary"
+                      className={classes.button}
+                    >
+                      Validate
+                    </Button>
+                  </div>
                 </form>
               </ExpansionPanelDetails>
             </ExpansionPanel>
