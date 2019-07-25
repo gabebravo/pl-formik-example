@@ -65,7 +65,6 @@ export default function Cruises() {
                     onBlur={props.handleBlur}
                     value={props.values.name}
                     name="airline"
-                    å
                   />
                   <input
                     type="text"

@@ -1,13 +1,17 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, Field } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import {
+  ExpansionPanel,
+  ExpansionPanelDetails,
+  ExpansionPanelSummary,
+  Typography,
+  Button
+} from '@material-ui/core';
 import { UserSchema } from '../Schemas';
 import { UserValidation } from '../Validation';
+import TextField from '../Fields/Text';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -21,6 +25,9 @@ const useStyles = makeStyles(theme => ({
   secondaryHeading: {
     fontSize: theme.typography.pxToRem(15),
     color: theme.palette.text.secondary
+  },
+  button: {
+    margin: theme.spacing(1)
   }
 }));
 
@@ -44,7 +51,7 @@ export default function User() {
           }, 1000);
         }}
         render={props => {
-          console.log('props', props);
+          console.log('user props:', props);
           return (
             <ExpansionPanel
               expanded={expanded === 'panel1'}
@@ -59,59 +66,49 @@ export default function User() {
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
                 <form onSubmit={props.handleSubmit}>
-                  <input
-                    type="text"
-                    onChange={props.handleChange}
-                    onBlur={props.handleBlur}
-                    value={props.values.name}
+                  <Field
                     name="firstName"
+                    label="First Name"
+                    component={TextField}
                   />
-                  <input
-                    type="text"
-                    onChange={props.handleChange}
-                    onBlur={props.handleBlur}
-                    value={props.values.name}
+                  <Field
                     name="lastName"
+                    label="Last Name"
+                    component={TextField}
                   />
-                  <input
-                    type="text"
-                    onChange={props.handleChange}
-                    onBlur={props.handleBlur}
-                    value={props.values.name}
-                    name="email"
-                  />
-                  <input
-                    type="text"
-                    onChange={props.handleChange}
-                    onBlur={props.handleBlur}
-                    value={props.values.name}
+                  <Field name="email" label="Email" component={TextField} />
+                  <Field
                     name="address.line1"
+                    label="Line 1"
+                    component={TextField}
                   />
-                  <input
-                    type="text"
-                    onChange={props.handleChange}
-                    onBlur={props.handleBlur}
-                    value={props.values.name}
+                  <Field
                     name="address.city"
+                    label="City"
+                    component={TextField}
                   />
-                  <input
-                    type="text"
-                    onChange={props.handleChange}
-                    onBlur={props.handleBlur}
-                    value={props.values.name}
+                  <Field
                     name="address.state"
+                    label="State"
+                    component={TextField}
                   />
-                  <input
-                    type="text"
-                    onChange={props.handleChange}
-                    onBlur={props.handleBlur}
-                    value={props.values.name}
+                  <Field
                     name="address.zip"
+                    label="State"
+                    component={TextField}
                   />
                   {props.errors.name && (
                     <div id="feedback">{props.errors.name}</div>
                   )}
-                  <button type="submit">Submit</button>
+                  <div>
+                    <Button
+                      variant="outlined"
+                      color="primary"
+                      className={classes.button}
+                    >
+                      Confirm
+                    </Button>
+                  </div>
                 </form>
               </ExpansionPanelDetails>
             </ExpansionPanel>
