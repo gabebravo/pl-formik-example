@@ -1,12 +1,39 @@
 import React from 'react';
 import { Formik } from 'formik';
+import { makeStyles } from '@material-ui/core/styles';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { HotelsSchema } from '../Schemas';
 import { HotelsValidation } from '../Validation';
 
-export default function Hotels() {
+const useStyles = makeStyles(theme => ({
+  root: {
+    width: '100%'
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    flexBasis: '33.33%',
+    flexShrink: 0
+  },
+  secondaryHeading: {
+    fontSize: theme.typography.pxToRem(15),
+    color: theme.palette.text.secondary
+  }
+}));
+
+export default function Cruises() {
+  const classes = useStyles();
+  const [expanded, setExpanded] = React.useState(false);
+
+  const handleChange = panel => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
+
   return (
     <div>
-      <h1>Hotels</h1>
       <Formik
         initialValues={HotelsSchema}
         validationSchema={HotelsValidation}
@@ -19,47 +46,61 @@ export default function Hotels() {
         render={props => {
           console.log('props', props);
           return (
-            <form onSubmit={props.handleSubmit}>
-              <input
-                type="text"
-                onChange={props.handleChange}
-                onBlur={props.handleBlur}
-                value={props.values.name}
-                name="airline"
-              />
-              <input
-                type="text"
-                onChange={props.handleChange}
-                onBlur={props.handleBlur}
-                value={props.values.name}
-                name="departureDate"
-              />
-              <input
-                type="text"
-                onChange={props.handleChange}
-                onBlur={props.handleBlur}
-                value={props.values.name}
-                name="returnDate"
-              />
-              <input
-                type="text"
-                onChange={props.handleChange}
-                onBlur={props.handleBlur}
-                value={props.values.name}
-                name="fromCity"
-              />
-              <input
-                type="text"
-                onChange={props.handleChange}
-                onBlur={props.handleBlur}
-                value={props.values.name}
-                name="toCity"
-              />
-              {props.errors.name && (
-                <div id="feedback">{props.errors.name}</div>
-              )}
-              <button type="submit">Submit</button>
-            </form>
+            <ExpansionPanel
+              expanded={expanded === 'panel5'}
+              onChange={handleChange('panel5')}
+            >
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel5bh-content"
+                id="panel5bh-header"
+              >
+                <Typography className={classes.heading}>Hotels</Typography>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <form onSubmit={props.handleSubmit}>
+                  <input
+                    type="text"
+                    onChange={props.handleChange}
+                    onBlur={props.handleBlur}
+                    value={props.values.name}
+                    name="airline"
+                  />
+                  <input
+                    type="text"
+                    onChange={props.handleChange}
+                    onBlur={props.handleBlur}
+                    value={props.values.name}
+                    name="departureDate"
+                  />
+                  <input
+                    type="text"
+                    onChange={props.handleChange}
+                    onBlur={props.handleBlur}
+                    value={props.values.name}
+                    name="returnDate"
+                  />
+                  <input
+                    type="text"
+                    onChange={props.handleChange}
+                    onBlur={props.handleBlur}
+                    value={props.values.name}
+                    name="fromCity"
+                  />
+                  <input
+                    type="text"
+                    onChange={props.handleChange}
+                    onBlur={props.handleBlur}
+                    value={props.values.name}
+                    name="toCity"
+                  />
+                  {props.errors.name && (
+                    <div id="feedback">{props.errors.name}</div>
+                  )}
+                  <button type="submit">Submit</button>
+                </form>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
           );
         }}
       />
