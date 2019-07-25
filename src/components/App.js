@@ -1,6 +1,6 @@
 import React from 'react';
 import Cars from '../sections/Cars';
-import Cruises from '../sections/Cars';
+import Cruises from '../sections/Cruises';
 import Flights from '../sections/Flights';
 import Hotels from '../sections/Hotels';
 
