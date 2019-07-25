@@ -1,13 +1,17 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, Field } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import {
+  ExpansionPanel,
+  ExpansionPanelDetails,
+  ExpansionPanelSummary,
+  Typography,
+  Button
+} from '@material-ui/core';
 import { HotelsSchema } from '../shared/schemas';
 import { HotelsValidation } from '../shared/validation';
+import TextField from '../Fields/Text';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -21,6 +25,9 @@ const useStyles = makeStyles(theme => ({
   secondaryHeading: {
     fontSize: theme.typography.pxToRem(15),
     color: theme.palette.text.secondary
+  },
+  button: {
+    margin: theme.spacing(1)
   }
 }));
 
@@ -32,19 +39,22 @@ export default function Cruises() {
     setExpanded(isExpanded ? panel : false);
   };
 
+  const validateForm = props => {
+    const { isValid, submitForm, values } = props;
+    submitForm();
+    if (isValid) {
+      // console.log('values:', values);
+    }
+  };
+
   return (
     <div>
       <Formik
         initialValues={HotelsSchema}
         validationSchema={HotelsValidation}
-        onSubmit={(values, actions) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            actions.setSubmitting(false);
-          }, 1000);
-        }}
+        onSubmit={values => console.log(JSON.stringify(values, null, 2))}
         render={props => {
-          console.log('props', props);
+          console.log('hotels:', props);
           return (
             <ExpansionPanel
               expanded={expanded === 'panel5'}
@@ -58,47 +68,48 @@ export default function Cruises() {
                 <Typography className={classes.heading}>Hotels</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                <form onSubmit={props.handleSubmit}>
-                  <input
-                    type="text"
-                    onChange={props.handleChange}
-                    onBlur={props.handleBlur}
-                    value={props.values.name}
-                    name="airline"
+                <div>
+                  <Field
+                    name="chain"
+                    label="Chain"
+                    component={TextField}
+                    isRequired
                   />
-                  <input
-                    type="text"
-                    onChange={props.handleChange}
-                    onBlur={props.handleBlur}
-                    value={props.values.name}
-                    name="departureDate"
+                  <Field
+                    name="city"
+                    label="City"
+                    component={TextField}
+                    isRequired
                   />
-                  <input
-                    type="text"
-                    onChange={props.handleChange}
-                    onBlur={props.handleBlur}
-                    value={props.values.name}
-                    name="returnDate"
+                  <Field
+                    name="days"
+                    label="Days"
+                    component={TextField}
+                    isRequired
                   />
-                  <input
-                    type="text"
-                    onChange={props.handleChange}
-                    onBlur={props.handleBlur}
-                    value={props.values.name}
-                    name="fromCity"
+                  <Field
+                    name="startDate"
+                    label="Start Date"
+                    component={TextField}
+                    isRequired
                   />
-                  <input
-                    type="text"
-                    onChange={props.handleChange}
-                    onBlur={props.handleBlur}
-                    value={props.values.name}
-                    name="toCity"
+                  <Field
+                    name="endDate"
+                    label="End Date"
+                    component={TextField}
+                    isRequired
                   />
-                  {props.errors.name && (
-                    <div id="feedback">{props.errors.name}</div>
-                  )}
-                  <button type="submit">Submit</button>
-                </form>
+                  <div>
+                    <Button
+                      onClick={() => validateForm(props)}
+                      variant="outlined"
+                      color="primary"
+                      className={classes.button}
+                    >
+                      Validate
+                    </Button>
+                  </div>
+                </div>
               </ExpansionPanelDetails>
             </ExpansionPanel>
           );

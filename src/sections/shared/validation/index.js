@@ -45,6 +45,6 @@ export const HotelsValidation = Yup.object().shape({
   chain: Yup.string().required('Required'),
   city: Yup.string().required('Required'),
   days: Yup.string().required('Required'),
-  arrivalDate: Yup.string().required('Required'),
-  departureDate: Yup.string().required('Required')
+  startDate: Yup.string().required('Required'),
+  endDate: Yup.string().required('Required')
 });
