@@ -17,12 +17,16 @@ export const UserValidation = Yup.object().shape({
 export const CarsValidation = Yup.object().shape({
   make: Yup.string().required('Required'),
   model: Yup.string().required('Required'),
-  year: Yup.string().required('Required')
+  year: Yup.string().required('Required'),
+  color: Yup.string().required('Required'),
+  pickupCity: Yup.string().required('Required'),
+  dropoffCity: Yup.string().required('Required')
 });
 
 // Form level validation for Cruises Schema
 export const CruisesValidation = Yup.object().shape({
   line: Yup.string().required('Required'),
+  ship: Yup.string().required('Required'),
   port: Yup.string().required('Required'),
   days: Yup.string().required('Required')
 });

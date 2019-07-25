@@ -39,17 +39,20 @@ export default function Cars() {
     setExpanded(isExpanded ? panel : false);
   };
 
+  const validateForm = props => {
+    const { isValid, submitForm, values } = props;
+    submitForm();
+    if (isValid) {
+      // console.log('values:', values);
+    }
+  };
+
   return (
     <div>
       <Formik
         initialValues={CarsSchema}
         validationSchema={CarsValidation}
-        onSubmit={(values, actions) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            actions.setSubmitting(false);
-          }, 1000);
-        }}
+        onSubmit={values => console.log(JSON.stringify(values, null, 2))}
         render={props => {
           console.log('cars:', props);
           return (
@@ -65,7 +68,7 @@ export default function Cars() {
                 <Typography className={classes.heading}>Cars</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                <form onSubmit={props.handleSubmit}>
+                <div>
                   <Field
                     name="make"
                     label="Make"
@@ -104,7 +107,7 @@ export default function Cars() {
                   />
                   <div>
                     <Button
-                      type="submit"
+                      onClick={() => validateForm(props)}
                       variant="outlined"
                       color="primary"
                       className={classes.button}
@@ -112,7 +115,7 @@ export default function Cars() {
                       Validate
                     </Button>
                   </div>
-                </form>
+                </div>
               </ExpansionPanelDetails>
             </ExpansionPanel>
           );

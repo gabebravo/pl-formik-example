@@ -39,7 +39,7 @@ export default function User() {
     setExpanded(isExpanded ? panel : false);
   };
 
-  const handleSubmit = props => {
+  const validateForm = props => {
     const { isValid, submitForm, values } = props;
     submitForm();
     if (isValid) {
@@ -54,7 +54,7 @@ export default function User() {
         validationSchema={UserValidation}
         onSubmit={values => console.log(JSON.stringify(values, null, 2))}
         render={props => {
-          console.log('user props:', props);
+          console.log('user:', props);
           return (
             <ExpansionPanel
               expanded={expanded === 'panel1'}
@@ -68,7 +68,7 @@ export default function User() {
                 <Typography className={classes.heading}>User</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                <form onSubmit={props.handleSubmit}>
+                <div>
                   <Field
                     name="firstName"
                     label="First Name"
@@ -108,7 +108,7 @@ export default function User() {
                   />
                   <div>
                     <Button
-                      onClick={() => handleSubmit(props)}
+                      onClick={() => validateForm(props)}
                       variant="outlined"
                       color="primary"
                       className={classes.button}
@@ -116,7 +116,7 @@ export default function User() {
                       Confirm
                     </Button>
                   </div>
-                </form>
+                </div>
               </ExpansionPanelDetails>
             </ExpansionPanel>
           );
