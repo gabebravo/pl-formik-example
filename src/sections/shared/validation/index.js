@@ -10,7 +10,9 @@ export const UserValidation = Yup.object().shape({
     city: Yup.string().required('Required'),
     state: Yup.string().required('Required'),
     zip: Yup.string().required('Required')
-  })
+  }),
+  startDate: Yup.string().required('Required'),
+  endDate: Yup.string().required('Required')
 });
 
 // Form level validation for Cars Schema

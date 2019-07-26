@@ -12,6 +12,7 @@ import {
 import { UserSchema } from '../shared/schemas';
 import { UserValidation } from '../shared/validation';
 import TextField from '../Fields/Text';
+import DateField from '../Fields/Date';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -104,6 +105,18 @@ export default function User() {
                     name="address.zip"
                     label="State"
                     component={TextField}
+                    isRequired
+                  />
+                  <Field
+                    name="startDate"
+                    label="Start Date"
+                    component={DateField}
+                    isRequired
+                  />
+                  <Field
+                    name="endDate"
+                    label="End Date"
+                    component={DateField}
                     isRequired
                   />
                   <div>

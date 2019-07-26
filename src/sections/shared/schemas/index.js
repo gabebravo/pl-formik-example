@@ -8,7 +8,9 @@ export const UserSchema = {
     city: '',
     state: '',
     zip: ''
-  }
+  },
+  startDate: '',
+  endDate: ''
 };
 
 // Initial Values for Cars Schema
