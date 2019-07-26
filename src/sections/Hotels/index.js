@@ -12,6 +12,7 @@ import {
 import { HotelsSchema } from '../shared/schemas';
 import { HotelsValidation } from '../shared/validation';
 import TextField from '../Fields/Text';
+import DateField from '../Fields/Date';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -90,13 +91,13 @@ export default function Cruises() {
                   <Field
                     name="startDate"
                     label="Start Date"
-                    component={TextField}
+                    component={DateField}
                     isRequired
                   />
                   <Field
                     name="endDate"
                     label="End Date"
-                    component={TextField}
+                    component={DateField}
                     isRequired
                   />
                   <div>

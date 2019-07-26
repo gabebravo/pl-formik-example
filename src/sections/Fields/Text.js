@@ -41,7 +41,9 @@ export default function Text({
         false
       }
       helperText={
-        (isInvalid(field.name, errors) && getErrorString(field.name, errors)) ||
+        (wasTouched(field.name, touched) &&
+          isInvalid(field.name, errors) &&
+          getErrorString(field.name, errors)) ||
         ''
       }
       required={isRequired}

@@ -12,6 +12,7 @@ import {
 import { FlightsSchema } from '../shared/schemas';
 import { FlightsValidation } from '../shared/validation';
 import TextField from '../Fields/Text';
+import DateField from '../Fields/Date';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -78,13 +79,13 @@ export default function Cruises() {
                   <Field
                     name="departureDate"
                     label="Departure Date"
-                    component={TextField}
+                    component={DateField}
                     isRequired
                   />
                   <Field
                     name="returnDate"
                     label="Return Date"
-                    component={TextField}
+                    component={DateField}
                     isRequired
                   />
                   <Field

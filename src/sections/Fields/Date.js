@@ -27,7 +27,7 @@ export default function DatePickers({
 
   React.useEffect(() => {
     const dateAsString = moment(selectedDate).format('MM/DD/YYYY');
-    setFieldValue(field.name, dateAsString, true);
+    setFieldValue(field.name, dateAsString, false);
   }, [selectedDate]);
 
   function handleDateChange(date) {
@@ -54,7 +54,8 @@ export default function DatePickers({
           false
         }
         helperText={
-          (isInvalid(field.name, errors) &&
+          (wasTouched(field.name, touched) &&
+            isInvalid(field.name, errors) &&
             getErrorString(field.name, errors)) ||
           ''
         }
