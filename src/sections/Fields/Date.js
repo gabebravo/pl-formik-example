@@ -37,6 +37,7 @@ export default function DatePickers({
   return (
     <MuiPickersUtilsProvider utils={MomentUtils}>
       <KeyboardDatePicker
+        {...field}
         className={classes.root}
         value={selectedDate}
         onChange={handleDateChange}
