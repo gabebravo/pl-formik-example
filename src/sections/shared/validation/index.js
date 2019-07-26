@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import { dateRegexCheck } from '../helpers';
 
 // Form level validation for Cars Schema
 export const UserValidation = Yup.object().shape({
@@ -11,7 +12,9 @@ export const UserValidation = Yup.object().shape({
     state: Yup.string().required('Required'),
     zip: Yup.string().required('Required')
   }),
-  startDate: Yup.string().required('Required'),
+  startDate: Yup.string()
+    .required('Required')
+    .test('date-regex', 'Incorrect Date Format', val => dateRegexCheck(val)),
   endDate: Yup.string().required('Required')
 });
 

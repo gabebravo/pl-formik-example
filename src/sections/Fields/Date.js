@@ -6,6 +6,7 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker
 } from '@material-ui/pickers';
+import { wasTouched, isInvalid, getErrorString } from '../shared/helpers';
 
 const useStyles = makeStyles({
   root: {
@@ -43,10 +44,19 @@ export default function DatePickers({
         margin="normal"
         id="mui-pickers-date"
         label={label}
+        required={isRequired}
         KeyboardButtonProps={{
           'aria-label': 'change date'
         }}
-        required={isRequired}
+        error={
+          (wasTouched(field.name, touched) && isInvalid(field.name, errors)) ||
+          false
+        }
+        helperText={
+          (isInvalid(field.name, errors) &&
+            getErrorString(field.name, errors)) ||
+          ''
+        }
       />
     </MuiPickersUtilsProvider>
   );
