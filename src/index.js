@@ -30,6 +30,11 @@ const theme = createMuiTheme({
         backgroundColor: '#fff',
         color: '#000'
       }
+    },
+    MuiSelect: {
+      root: {
+        width: 170
+      }
     }
   }
 });

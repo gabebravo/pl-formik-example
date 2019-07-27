@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { dateRegexCheck } from '../helpers';
+import { dateRegexCheck } from './helpers';
 
 // Form level validation for Cars Schema
 export const UserValidation = Yup.object().shape({

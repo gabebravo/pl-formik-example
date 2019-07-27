@@ -13,6 +13,8 @@ import { UserSchema } from '../shared/schemas';
 import { UserValidation } from '../shared/validation';
 import TextField from '../Fields/Text';
 import DateField from '../Fields/Date';
+import SelectField from '../Fields/Select';
+import { STATES } from '../shared/constants';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -103,7 +105,8 @@ export default function User() {
                   <Field
                     name="address.state"
                     label="State"
-                    component={TextField}
+                    list={STATES}
+                    component={SelectField}
                     isRequired
                   />
                   <Field
