@@ -10,7 +10,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function Header() {
+export default function Header({ headerText }) {
   const classes = useStyles();
 
   return (
@@ -18,7 +18,7 @@ export default function Header() {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" color="inherit">
-            PL Book a Trip
+            {headerText}
           </Typography>
         </Toolbar>
       </AppBar>

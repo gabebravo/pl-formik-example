@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     width: '100%'
   },
   heading: {
-    fontSize: theme.typography.pxToRem(15),
+    fontSize: theme.typography.pxToRem(18),
     flexBasis: '33.33%',
     flexShrink: 0
   },

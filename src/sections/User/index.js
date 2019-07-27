@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     width: '100%'
   },
   heading: {
-    fontSize: theme.typography.pxToRem(15),
+    fontSize: theme.typography.pxToRem(18),
     flexBasis: '33.33%',
     flexShrink: 0
   },
@@ -27,8 +27,13 @@ const useStyles = makeStyles(theme => ({
     fontSize: theme.typography.pxToRem(15),
     color: theme.palette.text.secondary
   },
-  button: {
+  activeBtn: {
     margin: theme.spacing(1)
+  },
+  validBtn: {
+    margin: theme.spacing(1),
+    backgroundColor: 'green',
+    color: 'white'
   }
 }));
 
@@ -103,7 +108,7 @@ export default function User() {
                   />
                   <Field
                     name="address.zip"
-                    label="State"
+                    label="Zip"
                     component={TextField}
                     isRequired
                   />
@@ -124,10 +129,14 @@ export default function User() {
                       onClick={() => validateForm(props)}
                       variant="outlined"
                       color="primary"
-                      className={classes.button}
+                      className={classes.activeBtn}
                     >
                       Confirm
                     </Button>
+                    {/* {props.dirty && props.isValid ? (
+                      <Button className={classes.validBtn}>Valid</Button>
+                    ) : (
+                    )} */}
                   </div>
                 </div>
               </ExpansionPanelDetails>
