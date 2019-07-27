@@ -2,10 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import MomentUtils from '@date-io/moment';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker
-} from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 import { wasTouched, isInvalid, getErrorString } from '../shared/helpers';
 
 const useStyles = makeStyles({
@@ -36,7 +33,7 @@ export default function DatePickers({
 
   return (
     <MuiPickersUtilsProvider utils={MomentUtils}>
-      <KeyboardDatePicker
+      <DatePicker
         {...field}
         className={classes.root}
         value={selectedDate}
