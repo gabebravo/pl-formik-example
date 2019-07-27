@@ -25,6 +25,7 @@ export default function Searchable({
   const { label, isRequired = false, section = '' } = props;
 
   async function handleSearch(evt) {
+    // Sincere@april.biz
     if (wasTouched(field.name, touched) && !isInvalid(field.name, errors)) {
       const result = await fetch(
         `https://jsonplaceholder.typicode.com/users?email=${field.value}`
