@@ -44,9 +44,6 @@ export default function DatePickers({
         id="mui-pickers-date"
         label={label}
         required={isRequired}
-        KeyboardButtonProps={{
-          'aria-label': 'change date'
-        }}
         error={
           (wasTouched(field.name, touched) && isInvalid(field.name, errors)) ||
           false

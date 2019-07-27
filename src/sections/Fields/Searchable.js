@@ -53,7 +53,6 @@ export default function Searchable({
         </InputLabel>
         <Input
           {...field}
-          margin="normal"
           required={isRequired}
           error={
             (wasTouched(field.name, touched) &&
