@@ -12,6 +12,7 @@ import {
 import { UserSchema } from '../shared/schemas';
 import { UserValidation } from '../shared/validation';
 import TextField from '../Fields/Text';
+import SearchableField from '../Fields/Searchable';
 import DateField from '../Fields/Date';
 import SelectField from '../Fields/Select';
 import { STATES } from '../shared/constants';
@@ -78,6 +79,11 @@ export default function User() {
               <ExpansionPanelDetails>
                 <div>
                   <Field
+                    name="email"
+                    label="Email"
+                    component={SearchableField}
+                  />
+                  <Field
                     name="firstName"
                     label="First Name"
                     component={TextField}
@@ -89,7 +95,6 @@ export default function User() {
                     component={TextField}
                     isRequired
                   />
-                  <Field name="email" label="Email" component={TextField} />
                   <Field
                     name="address.line1"
                     label="Line 1"

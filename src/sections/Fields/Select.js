@@ -7,13 +7,9 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap'
-  },
   formControl: {
     margin: '15px 10px 10px 10px',
-    minWidth: 170
+    width: 200
   }
 }));
 
