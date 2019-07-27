@@ -18,16 +18,24 @@ const useStyles = makeStyles(theme => ({
 
 export default function Searchable({
   field, // { name, value, onChange, onBlur }
-  form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+  form: { touched, errors, isValid }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
   ...props
 }) {
   const classes = useStyles();
   const { label, isRequired = false, section = '' } = props;
 
-  const handleSearch = event => {
-    console.log('email', field.value);
-    // setValues({ ...values, [prop]: event.target.value });
-  };
+  async function handleSearch(evt) {
+    if (wasTouched(field.name, touched) && !isInvalid(field.name, errors)) {
+      const result = await fetch(
+        `https://jsonplaceholder.typicode.com/users?email=${field.value}`
+      )
+        .then(res => res.json())
+        .then(json => json);
+      console.log('result', result);
+    } else {
+      console.log('invalid email');
+    }
+  }
 
   return (
     <>
