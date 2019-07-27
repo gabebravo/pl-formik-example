@@ -1,0 +1,15 @@
+{
+  "users": [
+    {
+      "firstName": 'John',
+      "lastName": 'Doe',
+      "email": 'johndoe@gmail.com',
+      "address": {
+        "line1": '123 Fake St',
+        "city": 'Miami',
+        "state": 'Florida',
+        "zip": '33176'
+      }
+    }
+  ]
+}
