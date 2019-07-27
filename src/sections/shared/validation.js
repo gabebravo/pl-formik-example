@@ -1,11 +1,18 @@
 import * as Yup from 'yup';
-import { dateRegexCheck } from './helpers';
+import { dateRegexCheck, emailRegexCheck } from './helpers';
 
 // Form level validation for Cars Schema
 export const UserValidation = Yup.object().shape({
   firstName: Yup.string().required('Required'),
   lastName: Yup.string().required('Required'),
-  email: Yup.string().required('Required'),
+  email: Yup.string()
+    .required('Required')
+    .test('user-email-regex', 'Incorrect Email Format', val => {
+      console.log('val', val);
+      const regexResult = emailRegexCheck(val);
+      console.log('regexResult', regexResult);
+      return emailRegexCheck(val);
+    }),
   address: Yup.object().shape({
     line1: Yup.string().required('Required'),
     city: Yup.string().required('Required'),
@@ -14,10 +21,12 @@ export const UserValidation = Yup.object().shape({
   }),
   startDate: Yup.string()
     .required('Required')
-    .test('date-regex', 'Incorrect Date Format', val => dateRegexCheck(val)),
+    .test('user-startdate-regex', 'Incorrect Date Format', val =>
+      dateRegexCheck(val)
+    ),
   endDate: Yup.string()
     .required('Required')
-    .test('date-regex', 'Incorrect Date Format', val => dateRegexCheck(val))
+    .test('user-end-regex', 'Incorrect Date Format', val => dateRegexCheck(val))
 });
 
 // Form level validation for Cars Schema

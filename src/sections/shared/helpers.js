@@ -55,3 +55,8 @@ export function dateRegexCheck(testdate) {
   var date_regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
   return date_regex.test(testdate);
 }
+
+export function emailRegexCheck(testEmail) {
+  var email_regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+  return email_regex.test(testEmail);
+}
