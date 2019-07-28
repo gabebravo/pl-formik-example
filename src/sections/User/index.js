@@ -76,7 +76,6 @@ function User({ resetReadOnly, readOnly }) {
                     label="Email"
                     component={SearchableField}
                     readOnly={readOnly}
-                    section="user"
                     isRequired
                   />
                   <Field
@@ -117,7 +116,6 @@ function User({ resetReadOnly, readOnly }) {
                     list={STATES}
                     component={SelectField}
                     readOnly={readOnly}
-                    section="user"
                     isRequired
                   />
                   <Field
@@ -132,14 +130,12 @@ function User({ resetReadOnly, readOnly }) {
                     name="startDate"
                     label="Start Date"
                     component={DateField}
-                    section="user"
                     isRequired
                   />
                   <Field
                     name="endDate"
                     label="End Date"
                     component={DateField}
-                    section="user"
                     isRequired
                   />
                   <div>

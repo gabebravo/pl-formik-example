@@ -21,8 +21,9 @@ const defaultState = {
 
 // ACTIONS
 export const setUserData = createAction('SET_USER_DATA');
-export const setValidationFlag = createAction('SET_VALIDATION_FLAG');
 export const resetReadOnlyFlag = createAction('RESET_READ_ONLY_FLAG');
+export const setSectionValues = createAction('SET_USER_DATA');
+export const setValidationFlag = createAction('SET_VALIDATION_FLAG');
 
 // REDUCERS
 export default handleActions(
@@ -33,13 +34,17 @@ export default handleActions(
       values: { ...state.values, user: payload.data },
       readOnly: true
     }),
-    [setValidationFlag]: (state, { payload }) => ({
-      ...state,
-      valid: { ...state.valid, [payload.section]: payload.isValid }
-    }),
     [resetReadOnlyFlag]: state => ({
       ...state,
       readOnly: defaultState.readOnly
+    }),
+    [setSectionValues]: (state, { payload }) => ({
+      ...state,
+      values: { ...state.values, [payload.section]: payload.values }
+    }),
+    [setValidationFlag]: (state, { payload }) => ({
+      ...state,
+      valid: { ...state.valid, [payload.section]: payload.isValid }
     })
   },
   defaultState

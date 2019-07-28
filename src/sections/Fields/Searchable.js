@@ -8,7 +8,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Search from '@material-ui/icons/Search';
 import { wasTouched, isInvalid, getErrorString } from '../shared/helpers';
-import { fetchUserData, setValidationFlag } from '../../redux/reducers';
+import { fetchUserData } from '../../redux/reducers';
 import { connect } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
@@ -20,11 +20,11 @@ const useStyles = makeStyles(theme => ({
 
 function Searchable({
   field, // { name, value, onChange, onBlur }
-  form: { touched, errors, setValues, validateForm, isValid }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+  form: { touched, errors, setValues, validateForm }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
   ...props
 }) {
   const classes = useStyles();
-  const { label, isRequired = false, section = '', readOnly = false } = props;
+  const { label, isRequired = false, readOnly = false } = props;
 
   function handleSearch(evt) {
     // Sincere@april.biz

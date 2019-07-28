@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { wasTouched, isInvalid, getErrorString } from '../shared/helpers';
 import { connect } from 'react-redux';
-import { setValidationFlag } from '../../redux/reducers';
+import { setValidationFlag, setSectionValues } from '../../redux/reducers';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
 
 function Text({
   field, // { name, value, onChange, onBlur }
-  form: { touched, errors, isValid }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+  form: { touched, errors, isValid, values }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
   ...props
 }) {
   const classes = useStyles();
@@ -34,13 +34,19 @@ function Text({
     isRequired = false,
     section = '',
     setValidationFlag,
+    setSectionValues,
     readOnly = false
   } = props;
 
   React.useEffect(() => {
-    // NOTE : this useEffect will trigger the form-level
+    // NOTE : this useEffect will trigger at the form-level
     setValidationFlag({ section, isValid });
   }, [isValid]);
+
+  React.useEffect(() => {
+    // NOTE : this useEffect will trigger at the form-level
+    setSectionValues({ section, values });
+  }, [values]);
 
   return (
     <TextField
@@ -67,5 +73,5 @@ function Text({
 
 export default connect(
   null,
-  { setValidationFlag }
+  { setValidationFlag, setSectionValues }
 )(Text);

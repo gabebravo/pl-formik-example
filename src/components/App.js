@@ -14,7 +14,7 @@ function App({ valid, values }) {
 
   function subitHandler() {
     const { user, car, cruise, flight, hotel } = values;
-    const JSONpayload = { ...user, ...car, ...cruise, ...flight, ...hotel };
+    const JSONpayload = { user, car, cruise, flight, hotel };
     console.log('JSONpayload:', JSONpayload);
   }
 
