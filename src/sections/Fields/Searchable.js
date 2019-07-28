@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 
 function Searchable({
   field, // { name, value, onChange, onBlur }
-  form: { touched, errors, setValues }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+  form: { touched, errors, setValues, validateForm }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
   ...props
 }) {
   const classes = useStyles();
@@ -29,7 +29,10 @@ function Searchable({
   function handleSearch(evt) {
     // Sincere@april.biz
     if (wasTouched(field.name, touched) && !isInvalid(field.name, errors)) {
-      props.fetchUserData({ email: field.value, callback: setValues });
+      props.fetchUserData({
+        email: field.value,
+        formObj: { setValues, validateForm }
+      });
     } else {
       console.log('invalid email');
     }

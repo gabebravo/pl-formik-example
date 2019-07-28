@@ -6,8 +6,18 @@ import Cruise from '../sections/Cruise';
 import Flight from '../sections/Flight';
 import Hotel from '../sections/Hotel';
 import { Button } from '@material-ui/core';
+import { connect } from 'react-redux';
 
-function App() {
+function App({ valid, values }) {
+  console.log('valid', valid);
+  console.log('values', values);
+
+  function subitHandler() {
+    const { user, car, cruise, flight, hotel } = values;
+    const JSONpayload = { ...user, ...car, ...cruise, ...flight, ...hotel };
+    console.log('JSONpayload:', JSONpayload);
+  }
+
   return (
     <div>
       <Header headerText="PL Trip Planner" />
@@ -19,6 +29,13 @@ function App() {
       <div style={{ flex: '1' }}>
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
           <Button
+            disabled={
+              !!(
+                valid.user &&
+                (valid.car || valid.cruise || valid.flight || valid.hotel)
+              )
+            }
+            onClick={subitHandler}
             variant="contained"
             color="primary"
             style={{ margin: '1rem' }}
@@ -31,4 +48,9 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = state => ({ ...state.plTravel });
+
+export default connect(
+  mapStateToProps,
+  null
+)(App);

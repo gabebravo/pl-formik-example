@@ -35,7 +35,10 @@ export default handleActions(
 );
 
 // DUCKS/THUNKS
-export const fetchUserData = ({ email, callback }) => (dispatch, getState) => {
+export const fetchUserData = ({
+  email,
+  formObj: { setValues, validateForm }
+}) => (dispatch, getState) => {
   // Sincere@april.biz
   fetch(`https://jsonplaceholder.typicode.com/users?email=${email}`)
     .then(res => res.json())
@@ -44,7 +47,8 @@ export const fetchUserData = ({ email, callback }) => (dispatch, getState) => {
         const [user] = data;
         const transformedUser = transformUser(user);
         dispatch(setUserData({ data: transformedUser }));
-        callback(transformedUser);
+        setValues(transformedUser);
+        validateForm();
       }
     })
     .catch(err => console.log('error', err));

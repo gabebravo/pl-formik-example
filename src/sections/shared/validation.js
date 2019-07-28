@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { dateRegexCheck, emailRegexCheck } from './helpers';
+import { emailRegexCheck } from './helpers';
 
 // Form level validation for Cars Schema
 export const UserValidation = Yup.object().shape({
@@ -15,15 +15,7 @@ export const UserValidation = Yup.object().shape({
     city: Yup.string().required('Required'),
     state: Yup.string().required('Required'),
     zip: Yup.string().required('Required')
-  }),
-  startDate: Yup.string()
-    .required('Required')
-    .test('user-startdate-regex', 'Incorrect Date Format', val =>
-      dateRegexCheck(val)
-    ),
-  endDate: Yup.string()
-    .required('Required')
-    .test('user-end-regex', 'Incorrect Date Format', val => dateRegexCheck(val))
+  })
 });
 
 // Form level validation for Cars Schema
@@ -47,12 +39,6 @@ export const CruisesValidation = Yup.object().shape({
 // Form level validation for Flights Schema
 export const FlightsValidation = Yup.object().shape({
   airline: Yup.string().required('Required'),
-  departureDate: Yup.string()
-    .required('Required')
-    .test('date-regex', 'Incorrect Date Format', val => dateRegexCheck(val)),
-  returnDate: Yup.string()
-    .required('Required')
-    .test('date-regex', 'Incorrect Date Format', val => dateRegexCheck(val)),
   fromCity: Yup.string().required('Required'),
   toCity: Yup.string().required('Required')
 });
@@ -61,11 +47,5 @@ export const FlightsValidation = Yup.object().shape({
 export const HotelsValidation = Yup.object().shape({
   chain: Yup.string().required('Required'),
   city: Yup.string().required('Required'),
-  days: Yup.string().required('Required'),
-  startDate: Yup.string()
-    .required('Required')
-    .test('date-regex', 'Incorrect Date Format', val => dateRegexCheck(val)),
-  endDate: Yup.string()
-    .required('Required')
-    .test('date-regex', 'Incorrect Date Format', val => dateRegexCheck(val))
+  days: Yup.string().required('Required')
 });

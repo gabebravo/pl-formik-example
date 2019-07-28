@@ -49,7 +49,9 @@ export default function User() {
     const { isValid, submitForm, values } = props;
     submitForm();
     if (isValid) {
-      // console.log('values:', values);
+      console.log('values:', values);
+    } else {
+      console.log('values:', values);
     }
   };
 
