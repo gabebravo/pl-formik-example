@@ -23,7 +23,13 @@ export default function SimpleSelect({
     state: 'FL',
     name: 'Florida'
   });
-  const { label, list, isRequired = false, section = '' } = props;
+  const {
+    label,
+    list,
+    isRequired = false,
+    section = '',
+    readOnly = false
+  } = props;
 
   React.useEffect(() => {
     setFieldValue(field.name, value.state, false);
@@ -50,6 +56,7 @@ export default function SimpleSelect({
         <Select
           value={value.state}
           onChange={handleChange}
+          disabled={readOnly}
           inputProps={{
             name: 'state',
             id: 'state-simple'

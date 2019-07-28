@@ -15,12 +15,14 @@ const defaultState = {
     cruise: false,
     flight: false,
     hotel: false
-  }
+  },
+  readOnly: false
 };
 
 // ACTIONS
 export const setUserData = createAction('SET_USER_DATA');
 export const setValidationFlag = createAction('SET_VALIDATION_FLAG');
+export const resetReadOnlyFlag = createAction('RESET_READ_ONLY_FLAG');
 
 // REDUCERS
 export default handleActions(
@@ -28,11 +30,16 @@ export default handleActions(
     // USER
     [setUserData]: (state, { payload }) => ({
       ...state,
-      values: { ...state.values, user: payload.data }
+      values: { ...state.values, user: payload.data },
+      readOnly: true
     }),
     [setValidationFlag]: (state, { payload }) => ({
       ...state,
       valid: { ...state.valid, [payload.section]: payload.isValid }
+    }),
+    [resetReadOnlyFlag]: state => ({
+      ...state,
+      readOnly: defaultState.readOnly
     })
   },
   defaultState
@@ -56,4 +63,13 @@ export const fetchUserData = ({
       }
     })
     .catch(err => console.log('error', err));
+};
+
+export const resetReadOnly = ({
+  UserSchema,
+  formObj: { setValues, setTouched }
+}) => (dispatch, getState) => {
+  setValues(UserSchema);
+  setTouched({});
+  dispatch(resetReadOnlyFlag());
 };

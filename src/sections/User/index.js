@@ -18,6 +18,8 @@ import DateField from '../Fields/Date';
 import SelectField from '../Fields/Select';
 import { STATES } from '../shared/constants';
 import { useToggle } from '../../hooks';
+import { connect } from 'react-redux';
+import { resetReadOnly } from '../../redux/reducers';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,13 +41,16 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function User() {
+function User({ resetReadOnly, readOnly }) {
   const classes = useStyles();
   const { expanded, toggle } = useToggle(true);
 
   function resetHandler(props) {
-    props.setValues(UserSchema);
-    props.setTouched({});
+    const { setValues, setTouched } = props;
+    resetReadOnly({
+      UserSchema,
+      formObj: { setValues, setTouched }
+    });
   }
 
   return (
@@ -70,6 +75,7 @@ export default function User() {
                     name="email"
                     label="Email"
                     component={SearchableField}
+                    readOnly={readOnly}
                     section="user"
                     isRequired
                   />
@@ -77,6 +83,7 @@ export default function User() {
                     name="firstName"
                     label="First Name"
                     component={TextField}
+                    readOnly={readOnly}
                     section="user"
                     isRequired
                   />
@@ -84,6 +91,7 @@ export default function User() {
                     name="lastName"
                     label="Last Name"
                     component={TextField}
+                    readOnly={readOnly}
                     section="user"
                     isRequired
                   />
@@ -91,6 +99,7 @@ export default function User() {
                     name="address.line1"
                     label="Line 1"
                     component={TextField}
+                    readOnly={readOnly}
                     section="user"
                     isRequired
                   />
@@ -98,6 +107,7 @@ export default function User() {
                     name="address.city"
                     label="City"
                     component={TextField}
+                    readOnly={readOnly}
                     section="user"
                     isRequired
                   />
@@ -106,6 +116,7 @@ export default function User() {
                     label="State"
                     list={STATES}
                     component={SelectField}
+                    readOnly={readOnly}
                     section="user"
                     isRequired
                   />
@@ -113,6 +124,7 @@ export default function User() {
                     name="address.zip"
                     label="Zip"
                     component={TextField}
+                    readOnly={readOnly}
                     section="user"
                     isRequired
                   />
@@ -150,3 +162,12 @@ export default function User() {
     </div>
   );
 }
+
+const mapStateToProps = state => ({
+  readOnly: state.plTravel.readOnly
+});
+
+export default connect(
+  mapStateToProps,
+  { resetReadOnly }
+)(User);

@@ -29,7 +29,13 @@ function Text({
   ...props
 }) {
   const classes = useStyles();
-  const { label, isRequired = false, section = '', setValidationFlag } = props;
+  const {
+    label,
+    isRequired = false,
+    section = '',
+    setValidationFlag,
+    readOnly = false
+  } = props;
 
   React.useEffect(() => {
     // NOTE : this useEffect will trigger the form-level
@@ -39,6 +45,7 @@ function Text({
   return (
     <TextField
       {...field}
+      disabled={readOnly}
       section={section}
       label={label}
       className={classes.textField}

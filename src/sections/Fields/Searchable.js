@@ -24,7 +24,7 @@ function Searchable({
   ...props
 }) {
   const classes = useStyles();
-  const { label, isRequired = false, section = '' } = props;
+  const { label, isRequired = false, section = '', readOnly = false } = props;
 
   function handleSearch(evt) {
     // Sincere@april.biz
@@ -53,6 +53,7 @@ function Searchable({
         </InputLabel>
         <Input
           {...field}
+          disabled={readOnly}
           required={isRequired}
           error={
             (wasTouched(field.name, touched) &&
