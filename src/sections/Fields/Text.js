@@ -32,6 +32,7 @@ function Text({
   const { label, isRequired = false, section = '', setValidationFlag } = props;
 
   React.useEffect(() => {
+    // NOTE : this useEffect will trigger the form-level
     setValidationFlag({ section, isValid });
   }, [isValid]);
 

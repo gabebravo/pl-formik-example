@@ -18,8 +18,6 @@ import DateField from '../Fields/Date';
 import SelectField from '../Fields/Select';
 import { STATES } from '../shared/constants';
 import { useToggle } from '../../hooks';
-import { connect } from 'react-redux';
-import { setValidationFlag } from '../../redux/reducers';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -35,16 +33,13 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.text.secondary
   },
   activeBtn: {
-    margin: theme.spacing(1)
-  },
-  resetBtn: {
     margin: theme.spacing(1),
-    backgroundColor: 'green',
-    color: 'white'
+    color: '#4CAF50',
+    borderColor: '#4CAF50'
   }
 }));
 
-function User({ setValidationFlag }) {
+export default function User() {
   const classes = useStyles();
   const { expanded, toggle } = useToggle(true);
 
@@ -138,8 +133,9 @@ function User({ setValidationFlag }) {
                   <div>
                     {!_isEmpty(props.touched) && props.isValid && (
                       <Button
+                        variant="outlined"
                         onClick={() => resetHandler(props)}
-                        className={classes.resetBtn}
+                        className={classes.activeBtn}
                       >
                         Reset
                       </Button>
@@ -154,8 +150,3 @@ function User({ setValidationFlag }) {
     </div>
   );
 }
-
-export default connect(
-  null,
-  { setValidationFlag }
-)(User);

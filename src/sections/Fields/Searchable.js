@@ -24,7 +24,7 @@ function Searchable({
   ...props
 }) {
   const classes = useStyles();
-  const { label, isRequired = false, section = '', setValidationFlag } = props;
+  const { label, isRequired = false, section = '' } = props;
 
   function handleSearch(evt) {
     // Sincere@april.biz
@@ -37,10 +37,6 @@ function Searchable({
       console.log('invalid email');
     }
   }
-
-  React.useEffect(() => {
-    setValidationFlag({ section, isValid });
-  }, [isValid]);
 
   return (
     <>
@@ -89,5 +85,5 @@ const mapStateToProps = ({ values, valid }) => ({ values, valid });
 
 export default connect(
   mapStateToProps,
-  { fetchUserData, setValidationFlag }
+  { fetchUserData }
 )(Searchable);
