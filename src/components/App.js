@@ -9,8 +9,8 @@ import { Button } from '@material-ui/core';
 import { connect } from 'react-redux';
 
 function App({ valid, values }) {
-  console.log('valid', valid);
-  console.log('values', values);
+  // console.log('valid', valid);
+  // console.log('values', values);
 
   function subitHandler() {
     const { user, car, cruise, flight, hotel } = values;
@@ -30,10 +30,11 @@ function App({ valid, values }) {
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
           <Button
             disabled={
-              !!(
-                valid.user &&
-                (valid.car || valid.cruise || valid.flight || valid.hotel)
-              )
+              !valid.user
+              // !!(
+              //   valid.user &&
+              //   (valid.car || valid.cruise || valid.flight || valid.hotel)
+              // )
             }
             onClick={subitHandler}
             variant="contained"

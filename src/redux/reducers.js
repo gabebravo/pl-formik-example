@@ -20,6 +20,7 @@ const defaultState = {
 
 // ACTIONS
 export const setUserData = createAction('SET_USER_DATA');
+export const setValidationFlag = createAction('SET_VALIDATION_FLAG');
 
 // REDUCERS
 export default handleActions(
@@ -27,8 +28,11 @@ export default handleActions(
     // USER
     [setUserData]: (state, { payload }) => ({
       ...state,
-      ...state.values,
-      values: { user: payload.data }
+      values: { ...state.values, user: payload.data }
+    }),
+    [setValidationFlag]: (state, { payload }) => ({
+      ...state,
+      valid: { ...state.valid, [payload.section]: payload.isValid }
     })
   },
   defaultState

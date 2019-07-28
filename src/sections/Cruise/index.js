@@ -51,7 +51,7 @@ export default function Cruise() {
         validationSchema={CruisesValidation}
         onSubmit={values => console.log(JSON.stringify(values, null, 2))}
         render={props => {
-          console.log('cruises:', props);
+          // console.log('cruises:', props);
           return (
             <ExpansionPanel expanded={expanded} onChange={toggle}>
               <ExpansionPanelSummary

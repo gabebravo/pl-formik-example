@@ -52,7 +52,7 @@ export default function Flight() {
         validationSchema={FlightsValidation}
         onSubmit={values => console.log(JSON.stringify(values, null, 2))}
         render={props => {
-          console.log('flights:', props);
+          // console.log('flights:', props);
           return (
             <ExpansionPanel expanded={expanded} onChange={toggle}>
               <ExpansionPanelSummary

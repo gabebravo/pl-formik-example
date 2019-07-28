@@ -9,6 +9,7 @@ import {
   Typography,
   Button
 } from '@material-ui/core';
+import _isEmpty from 'lodash/isEmpty';
 import { UserSchema } from '../shared/schemas';
 import { UserValidation } from '../shared/validation';
 import TextField from '../Fields/Text';
@@ -17,6 +18,8 @@ import DateField from '../Fields/Date';
 import SelectField from '../Fields/Select';
 import { STATES } from '../shared/constants';
 import { useToggle } from '../../hooks';
+import { connect } from 'react-redux';
+import { setValidationFlag } from '../../redux/reducers';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -34,33 +37,27 @@ const useStyles = makeStyles(theme => ({
   activeBtn: {
     margin: theme.spacing(1)
   },
-  validBtn: {
+  resetBtn: {
     margin: theme.spacing(1),
     backgroundColor: 'green',
     color: 'white'
   }
 }));
 
-export default function User() {
+function User({ setValidationFlag }) {
   const classes = useStyles();
   const { expanded, toggle } = useToggle(true);
 
-  const validateForm = props => {
-    const { isValid, submitForm, values } = props;
-    submitForm();
-    if (isValid) {
-      console.log('values:', values);
-    } else {
-      console.log('values:', values);
-    }
-  };
+  function resetHandler(props) {
+    props.setValues(UserSchema);
+    props.setTouched({});
+  }
 
   return (
     <div>
       <Formik
         initialValues={UserSchema}
         validationSchema={UserValidation}
-        onSubmit={values => console.log(JSON.stringify(values, null, 2))}
         render={props => {
           console.log('user:', props);
           return (
@@ -78,29 +75,35 @@ export default function User() {
                     name="email"
                     label="Email"
                     component={SearchableField}
+                    section="user"
+                    isRequired
                   />
                   <Field
                     name="firstName"
                     label="First Name"
                     component={TextField}
+                    section="user"
                     isRequired
                   />
                   <Field
                     name="lastName"
                     label="Last Name"
                     component={TextField}
+                    section="user"
                     isRequired
                   />
                   <Field
                     name="address.line1"
                     label="Line 1"
                     component={TextField}
+                    section="user"
                     isRequired
                   />
                   <Field
                     name="address.city"
                     label="City"
                     component={TextField}
+                    section="user"
                     isRequired
                   />
                   <Field
@@ -108,39 +111,39 @@ export default function User() {
                     label="State"
                     list={STATES}
                     component={SelectField}
+                    section="user"
                     isRequired
                   />
                   <Field
                     name="address.zip"
                     label="Zip"
                     component={TextField}
+                    section="user"
                     isRequired
                   />
                   <Field
                     name="startDate"
                     label="Start Date"
                     component={DateField}
+                    section="user"
                     isRequired
                   />
                   <Field
                     name="endDate"
                     label="End Date"
                     component={DateField}
+                    section="user"
                     isRequired
                   />
                   <div>
-                    <Button
-                      onClick={() => validateForm(props)}
-                      variant="outlined"
-                      color="primary"
-                      className={classes.activeBtn}
-                    >
-                      Confirm
-                    </Button>
-                    {/* {props.dirty && props.isValid ? (
-                      <Button className={classes.validBtn}>Valid</Button>
-                    ) : (
-                    )} */}
+                    {!_isEmpty(props.touched) && props.isValid && (
+                      <Button
+                        onClick={() => resetHandler(props)}
+                        className={classes.resetBtn}
+                      >
+                        Reset
+                      </Button>
+                    )}
                   </div>
                 </div>
               </ExpansionPanelDetails>
@@ -151,3 +154,8 @@ export default function User() {
     </div>
   );
 }
+
+export default connect(
+  null,
+  { setValidationFlag }
+)(User);

@@ -6,7 +6,7 @@ export const UserSchema = {
   address: {
     line1: '',
     city: '',
-    state: '',
+    state: 'FL',
     zip: ''
   },
   startDate: '',

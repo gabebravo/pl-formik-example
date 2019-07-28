@@ -51,7 +51,7 @@ export default function Car() {
         validationSchema={CarsValidation}
         onSubmit={values => console.log(JSON.stringify(values, null, 2))}
         render={props => {
-          console.log('cars:', props);
+          // console.log('cars:', props);
           return (
             <ExpansionPanel expanded={expanded} onChange={toggle}>
               <ExpansionPanelSummary

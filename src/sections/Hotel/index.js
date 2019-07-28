@@ -52,7 +52,7 @@ export default function Hotel() {
         validationSchema={HotelsValidation}
         onSubmit={values => console.log(JSON.stringify(values, null, 2))}
         render={props => {
-          console.log('hotels:', props);
+          // console.log('hotels:', props);
           return (
             <ExpansionPanel expanded={expanded} onChange={toggle}>
               <ExpansionPanelSummary
