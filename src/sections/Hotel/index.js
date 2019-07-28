@@ -13,6 +13,7 @@ import { HotelsSchema } from '../shared/schemas';
 import { HotelsValidation } from '../shared/validation';
 import TextField from '../Fields/Text';
 import DateField from '../Fields/Date';
+import { useToggle } from '../../hooks';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -34,11 +35,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Hotel() {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleChange = panel => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
-  };
+  const { expanded, toggle } = useToggle(false);
 
   const validateForm = props => {
     const { isValid, submitForm, values } = props;
@@ -57,10 +54,7 @@ export default function Hotel() {
         render={props => {
           console.log('hotels:', props);
           return (
-            <ExpansionPanel
-              expanded={expanded === 'panel5'}
-              onChange={handleChange('panel5')}
-            >
+            <ExpansionPanel expanded={expanded} onChange={toggle}>
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel5bh-content"

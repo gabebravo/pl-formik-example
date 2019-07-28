@@ -13,6 +13,7 @@ import { FlightsSchema } from '../shared/schemas';
 import { FlightsValidation } from '../shared/validation';
 import TextField from '../Fields/Text';
 import DateField from '../Fields/Date';
+import { useToggle } from '../../hooks';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -34,11 +35,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Flight() {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleChange = panel => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
-  };
+  const { expanded, toggle } = useToggle(false);
 
   const validateForm = props => {
     const { isValid, submitForm, values } = props;
@@ -57,10 +54,7 @@ export default function Flight() {
         render={props => {
           console.log('flights:', props);
           return (
-            <ExpansionPanel
-              expanded={expanded === 'panel4'}
-              onChange={handleChange('panel4')}
-            >
+            <ExpansionPanel expanded={expanded} onChange={toggle}>
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel4bh-content"

@@ -12,6 +12,7 @@ import {
 import { CarsSchema } from '../shared/schemas';
 import { CarsValidation } from '../shared/validation';
 import TextField from '../Fields/Text';
+import { useToggle } from '../../hooks';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -33,11 +34,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Car() {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleChange = panel => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
-  };
+  const { expanded, toggle } = useToggle(false);
 
   const validateForm = props => {
     const { isValid, submitForm, values } = props;
@@ -56,10 +53,7 @@ export default function Car() {
         render={props => {
           console.log('cars:', props);
           return (
-            <ExpansionPanel
-              expanded={expanded === 'panel2'}
-              onChange={handleChange('panel2')}
-            >
+            <ExpansionPanel expanded={expanded} onChange={toggle}>
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel2bh-content"

@@ -16,6 +16,7 @@ import SearchableField from '../Fields/Searchable';
 import DateField from '../Fields/Date';
 import SelectField from '../Fields/Select';
 import { STATES } from '../shared/constants';
+import { useToggle } from '../../hooks';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -42,11 +43,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function User() {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleChange = panel => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
-  };
+  const { expanded, toggle } = useToggle(true);
 
   const validateForm = props => {
     const { isValid, submitForm, values } = props;
@@ -65,10 +62,7 @@ export default function User() {
         render={props => {
           console.log('user:', props);
           return (
-            <ExpansionPanel
-              expanded={expanded === 'panel1'}
-              onChange={handleChange('panel1')}
-            >
+            <ExpansionPanel expanded={expanded} onChange={toggle}>
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1bh-content"

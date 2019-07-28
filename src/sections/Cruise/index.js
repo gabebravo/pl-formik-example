@@ -12,6 +12,7 @@ import {
 import { CruisesSchema } from '../shared/schemas';
 import { CruisesValidation } from '../shared/validation';
 import TextField from '../Fields/Text';
+import { useToggle } from '../../hooks';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -33,11 +34,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Cruise() {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleChange = panel => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
-  };
+  const { expanded, toggle } = useToggle(false);
 
   const validateForm = props => {
     const { isValid, submitForm, values } = props;
@@ -56,10 +53,7 @@ export default function Cruise() {
         render={props => {
           console.log('cruises:', props);
           return (
-            <ExpansionPanel
-              expanded={expanded === 'panel3'}
-              onChange={handleChange('panel3')}
-            >
+            <ExpansionPanel expanded={expanded} onChange={toggle}>
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel3bh-content"
