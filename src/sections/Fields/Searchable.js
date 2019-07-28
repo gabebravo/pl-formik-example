@@ -8,7 +8,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Search from '@material-ui/icons/Search';
 import { wasTouched, isInvalid, getErrorString } from '../shared/helpers';
-import { fetchUserData } from '../../redux/store';
+import { fetchUserData } from '../../redux/reducers';
 import { connect } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
@@ -78,7 +78,9 @@ function Searchable({
   );
 }
 
+const mapStateToProps = ({ values, valid }) => ({ values, valid });
+
 export default connect(
-  null,
+  mapStateToProps,
   { fetchUserData }
 )(Searchable);

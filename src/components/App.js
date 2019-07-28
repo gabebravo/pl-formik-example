@@ -12,10 +12,10 @@ function App() {
     <div>
       <Header headerText="PL Trip Planner" />
       <User />
-      <Cars />
-      <Cruises />
-      <Flights />
-      <Hotels />
+      <Car />
+      <Cruise />
+      <Flight />
+      <Hotel />
       <div style={{ flex: '1' }}>
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
           <Button
