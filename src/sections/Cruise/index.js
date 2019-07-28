@@ -9,10 +9,9 @@ import {
   Typography,
   Button
 } from '@material-ui/core';
-import { HotelsSchema } from '../shared/schemas';
-import { HotelsValidation } from '../shared/validation';
+import { CruisesSchema } from '../shared/schemas';
+import { CruisesValidation } from '../shared/validation';
 import TextField from '../Fields/Text';
-import DateField from '../Fields/Date';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -32,7 +31,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Cruises() {
+export default function Cruise() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -51,34 +50,40 @@ export default function Cruises() {
   return (
     <div>
       <Formik
-        initialValues={HotelsSchema}
-        validationSchema={HotelsValidation}
+        initialValues={CruisesSchema}
+        validationSchema={CruisesValidation}
         onSubmit={values => console.log(JSON.stringify(values, null, 2))}
         render={props => {
-          console.log('hotels:', props);
+          console.log('cruises:', props);
           return (
             <ExpansionPanel
-              expanded={expanded === 'panel5'}
-              onChange={handleChange('panel5')}
+              expanded={expanded === 'panel3'}
+              onChange={handleChange('panel3')}
             >
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel5bh-content"
-                id="panel5bh-header"
+                aria-controls="panel3bh-content"
+                id="panel3bh-header"
               >
-                <Typography className={classes.heading}>Hotels</Typography>
+                <Typography className={classes.heading}>Cruises</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
                 <div>
                   <Field
-                    name="chain"
-                    label="Chain"
+                    name="line"
+                    label="Line"
                     component={TextField}
                     isRequired
                   />
                   <Field
-                    name="city"
-                    label="City"
+                    name="ship"
+                    label="Ship"
+                    component={TextField}
+                    isRequired
+                  />
+                  <Field
+                    name="port"
+                    label="Port"
                     component={TextField}
                     isRequired
                   />
@@ -86,18 +91,6 @@ export default function Cruises() {
                     name="days"
                     label="Days"
                     component={TextField}
-                    isRequired
-                  />
-                  <Field
-                    name="startDate"
-                    label="Start Date"
-                    component={DateField}
-                    isRequired
-                  />
-                  <Field
-                    name="endDate"
-                    label="End Date"
-                    component={DateField}
                     isRequired
                   />
                   <div>

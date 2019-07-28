@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Cruises() {
+export default function Flight() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 

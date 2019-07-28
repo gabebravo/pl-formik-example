@@ -9,8 +9,8 @@ import {
   Typography,
   Button
 } from '@material-ui/core';
-import { CruisesSchema } from '../shared/schemas';
-import { CruisesValidation } from '../shared/validation';
+import { CarsSchema } from '../shared/schemas';
+import { CarsValidation } from '../shared/validation';
 import TextField from '../Fields/Text';
 
 const useStyles = makeStyles(theme => ({
@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Cruises() {
+export default function Car() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -50,46 +50,58 @@ export default function Cruises() {
   return (
     <div>
       <Formik
-        initialValues={CruisesSchema}
-        validationSchema={CruisesValidation}
+        initialValues={CarsSchema}
+        validationSchema={CarsValidation}
         onSubmit={values => console.log(JSON.stringify(values, null, 2))}
         render={props => {
-          console.log('cruises:', props);
+          console.log('cars:', props);
           return (
             <ExpansionPanel
-              expanded={expanded === 'panel3'}
-              onChange={handleChange('panel3')}
+              expanded={expanded === 'panel2'}
+              onChange={handleChange('panel2')}
             >
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel3bh-content"
-                id="panel3bh-header"
+                aria-controls="panel2bh-content"
+                id="panel2bh-header"
               >
-                <Typography className={classes.heading}>Cruises</Typography>
+                <Typography className={classes.heading}>Cars</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
                 <div>
                   <Field
-                    name="line"
-                    label="Line"
+                    name="make"
+                    label="Make"
                     component={TextField}
                     isRequired
                   />
                   <Field
-                    name="ship"
-                    label="Ship"
+                    name="model"
+                    label="Model"
                     component={TextField}
                     isRequired
                   />
                   <Field
-                    name="port"
-                    label="Port"
+                    name="year"
+                    label="Year"
                     component={TextField}
                     isRequired
                   />
                   <Field
-                    name="days"
-                    label="Days"
+                    name="color"
+                    label="Color"
+                    component={TextField}
+                    isRequired
+                  />
+                  <Field
+                    name="pickupCity"
+                    label="Pickup City"
+                    component={TextField}
+                    isRequired
+                  />
+                  <Field
+                    name="dropoffCity"
+                    label="Dropoff City"
                     component={TextField}
                     isRequired
                   />

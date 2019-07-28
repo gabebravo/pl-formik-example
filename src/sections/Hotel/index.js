@@ -9,9 +9,10 @@ import {
   Typography,
   Button
 } from '@material-ui/core';
-import { CarsSchema } from '../shared/schemas';
-import { CarsValidation } from '../shared/validation';
+import { HotelsSchema } from '../shared/schemas';
+import { HotelsValidation } from '../shared/validation';
 import TextField from '../Fields/Text';
+import DateField from '../Fields/Date';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -31,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Cars() {
+export default function Hotel() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -50,59 +51,53 @@ export default function Cars() {
   return (
     <div>
       <Formik
-        initialValues={CarsSchema}
-        validationSchema={CarsValidation}
+        initialValues={HotelsSchema}
+        validationSchema={HotelsValidation}
         onSubmit={values => console.log(JSON.stringify(values, null, 2))}
         render={props => {
-          console.log('cars:', props);
+          console.log('hotels:', props);
           return (
             <ExpansionPanel
-              expanded={expanded === 'panel2'}
-              onChange={handleChange('panel2')}
+              expanded={expanded === 'panel5'}
+              onChange={handleChange('panel5')}
             >
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel2bh-content"
-                id="panel2bh-header"
+                aria-controls="panel5bh-content"
+                id="panel5bh-header"
               >
-                <Typography className={classes.heading}>Cars</Typography>
+                <Typography className={classes.heading}>Hotels</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
                 <div>
                   <Field
-                    name="make"
-                    label="Make"
+                    name="chain"
+                    label="Chain"
                     component={TextField}
                     isRequired
                   />
                   <Field
-                    name="model"
-                    label="Model"
+                    name="city"
+                    label="City"
                     component={TextField}
                     isRequired
                   />
                   <Field
-                    name="year"
-                    label="Year"
+                    name="days"
+                    label="Days"
                     component={TextField}
                     isRequired
                   />
                   <Field
-                    name="color"
-                    label="Color"
-                    component={TextField}
+                    name="startDate"
+                    label="Start Date"
+                    component={DateField}
                     isRequired
                   />
                   <Field
-                    name="pickupCity"
-                    label="Pickup City"
-                    component={TextField}
-                    isRequired
-                  />
-                  <Field
-                    name="dropoffCity"
-                    label="Dropoff City"
-                    component={TextField}
+                    name="endDate"
+                    label="End Date"
+                    component={DateField}
                     isRequired
                   />
                   <div>

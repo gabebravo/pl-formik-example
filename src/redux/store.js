@@ -2,14 +2,24 @@ import { createActions, handleActions } from 'redux-actions';
 import { transformUser } from '../sections/shared/helpers';
 
 const defaultState = {
-  userData: null
+  values: {
+    user: null,
+    car: null,
+    cruise: null,
+    flight: null,
+    hotel: null
+  },
+  valid: {
+    user: false,
+    car: false,
+    cruise: false,
+    flight: false,
+    hotel: false
+  }
 };
 
-const prefix = 'USER_STORE/';
-
 // USER
-export const setUserData = createActions(`${prefix}SET_USER_DATA`);
-console.log('setUserData', setUserData);
+export const setUserData = createActions('SET_USER_DATA');
 
 const reducers = handleActions(
   {
