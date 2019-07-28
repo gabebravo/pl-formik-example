@@ -8,6 +8,8 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Search from '@material-ui/icons/Search';
 import { wasTouched, isInvalid, getErrorString } from '../shared/helpers';
+import { fetchUserData } from '../../redux/store';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -16,23 +18,18 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Searchable({
+function Searchable({
   field, // { name, value, onChange, onBlur }
-  form: { touched, errors, isValid }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+  form: { touched, errors, setValues }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
   ...props
 }) {
   const classes = useStyles();
   const { label, isRequired = false, section = '' } = props;
 
-  async function handleSearch(evt) {
+  function handleSearch(evt) {
     // Sincere@april.biz
     if (wasTouched(field.name, touched) && !isInvalid(field.name, errors)) {
-      const result = await fetch(
-        `https://jsonplaceholder.typicode.com/users?email=${field.value}`
-      )
-        .then(res => res.json())
-        .then(json => json);
-      console.log('result', result);
+      props.fetchUserData({ email: field.value, callback: setValues });
     } else {
       console.log('invalid email');
     }
@@ -80,3 +77,8 @@ export default function Searchable({
     </>
   );
 }
+
+export default connect(
+  null,
+  { fetchUserData }
+)(Searchable);

@@ -7,12 +7,9 @@ export const UserValidation = Yup.object().shape({
   lastName: Yup.string().required('Required'),
   email: Yup.string()
     .required('Required')
-    .test('user-email-regex', 'Incorrect Email Format', val => {
-      console.log('val', val);
-      const regexResult = emailRegexCheck(val);
-      console.log('regexResult', regexResult);
-      return emailRegexCheck(val);
-    }),
+    .test('user-email-regex', 'Incorrect Email Format', val =>
+      emailRegexCheck(val)
+    ),
   address: Yup.object().shape({
     line1: Yup.string().required('Required'),
     city: Yup.string().required('Required'),

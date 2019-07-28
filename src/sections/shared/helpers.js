@@ -60,3 +60,23 @@ export function emailRegexCheck(testEmail) {
   var email_regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
   return email_regex.test(testEmail);
 }
+
+export const transformUser = userObj => {
+  const {
+    email,
+    name,
+    address: { street, city, zipcode }
+  } = userObj;
+  const [firstName, lastName] = name.split(' ');
+  return {
+    firstName,
+    lastName,
+    email,
+    address: {
+      line1: street,
+      city,
+      state: 'FL',
+      zip: zipcode
+    }
+  };
+};
