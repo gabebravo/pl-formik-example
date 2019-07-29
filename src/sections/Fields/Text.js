@@ -40,19 +40,18 @@ function Text({
 
   React.useEffect(() => {
     // NOTE : this useEffect will trigger at the form-level
-    setValidationFlag({ section, isValid });
+    section && setValidationFlag({ section, isValid });
   }, [isValid]);
 
   React.useEffect(() => {
     // NOTE : this useEffect will trigger at the form-level
-    setSectionValues({ section, values });
+    section && setSectionValues({ section, values });
   }, [values]);
 
   return (
     <TextField
       {...field}
       disabled={readOnly}
-      section={section}
       label={label}
       className={classes.textField}
       margin="normal"

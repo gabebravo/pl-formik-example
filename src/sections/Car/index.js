@@ -41,7 +41,7 @@ export default function Car() {
         initialValues={CarsSchema}
         validationSchema={CarsValidation}
         render={props => {
-          // console.log('cars:', props);
+          console.log('cars:', props);
           return (
             <ExpansionPanel expanded={expanded} onChange={toggle}>
               <ExpansionPanelSummary
@@ -85,12 +85,14 @@ export default function Car() {
                     name="pickupCity"
                     label="Pickup City"
                     component={TextField}
+                    section="car"
                     isRequired
                   />
                   <Field
                     name="dropoffCity"
                     label="Dropoff City"
                     component={TextField}
+                    section="car"
                     isRequired
                   />
                 </div>

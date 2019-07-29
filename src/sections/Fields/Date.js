@@ -20,7 +20,7 @@ export default function DatePickers({
 }) {
   const classes = useStyles();
   const [selectedDate, setSelectedDate] = React.useState(new Date());
-  const { label, isRequired = false, section = '' } = props;
+  const { label, isRequired = false } = props;
 
   React.useEffect(() => {
     const dateAsString = moment(selectedDate).format('MM/DD/YYYY');
@@ -39,7 +39,6 @@ export default function DatePickers({
         className={classes.root}
         value={selectedDate}
         onChange={handleDateChange}
-        section={section}
         margin="normal"
         id="mui-pickers-date"
         label={label}

@@ -23,16 +23,10 @@ export default function SimpleSelect({
     state: 'FL',
     name: 'Florida'
   });
-  const {
-    label,
-    list,
-    isRequired = false,
-    section = '',
-    readOnly = false
-  } = props;
+  const { label, list, isRequired = false, readOnly = false } = props;
 
   React.useEffect(() => {
-    setFieldValue(field.name, value.state, false);
+    setFieldValue(field.name, value.state);
   }, [value.state]);
 
   function handleChange(event) {
