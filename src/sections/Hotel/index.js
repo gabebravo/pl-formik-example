@@ -6,8 +6,7 @@ import {
   ExpansionPanel,
   ExpansionPanelDetails,
   ExpansionPanelSummary,
-  Typography,
-  Button
+  Typography
 } from '@material-ui/core';
 import { HotelsSchema } from '../shared/schemas';
 import { HotelsValidation } from '../shared/validation';
@@ -37,20 +36,11 @@ export default function Hotel() {
   const classes = useStyles();
   const { expanded, toggle } = useToggle(false);
 
-  const validateForm = props => {
-    const { isValid, submitForm, values } = props;
-    submitForm();
-    if (isValid) {
-      // console.log('values:', values);
-    }
-  };
-
   return (
     <div>
       <Formik
         initialValues={HotelsSchema}
         validationSchema={HotelsValidation}
-        onSubmit={values => console.log(JSON.stringify(values, null, 2))}
         render={props => {
           // console.log('hotels:', props);
           return (
@@ -68,18 +58,21 @@ export default function Hotel() {
                     name="chain"
                     label="Chain"
                     component={TextField}
+                    section="hotel"
                     isRequired
                   />
                   <Field
                     name="city"
                     label="City"
                     component={TextField}
+                    section="hotel"
                     isRequired
                   />
                   <Field
                     name="days"
                     label="Days"
                     component={TextField}
+                    section="hotel"
                     isRequired
                   />
                   <Field
@@ -94,16 +87,6 @@ export default function Hotel() {
                     component={DateField}
                     isRequired
                   />
-                  <div>
-                    <Button
-                      onClick={() => validateForm(props)}
-                      variant="outlined"
-                      color="primary"
-                      className={classes.button}
-                    >
-                      Validate
-                    </Button>
-                  </div>
                 </div>
               </ExpansionPanelDetails>
             </ExpansionPanel>

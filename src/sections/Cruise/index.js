@@ -6,8 +6,7 @@ import {
   ExpansionPanel,
   ExpansionPanelDetails,
   ExpansionPanelSummary,
-  Typography,
-  Button
+  Typography
 } from '@material-ui/core';
 import { CruisesSchema } from '../shared/schemas';
 import { CruisesValidation } from '../shared/validation';
@@ -36,20 +35,11 @@ export default function Cruise() {
   const classes = useStyles();
   const { expanded, toggle } = useToggle(false);
 
-  const validateForm = props => {
-    const { isValid, submitForm, values } = props;
-    submitForm();
-    if (isValid) {
-      // console.log('values:', values);
-    }
-  };
-
   return (
     <div>
       <Formik
         initialValues={CruisesSchema}
         validationSchema={CruisesValidation}
-        onSubmit={values => console.log(JSON.stringify(values, null, 2))}
         render={props => {
           // console.log('cruises:', props);
           return (
@@ -67,36 +57,30 @@ export default function Cruise() {
                     name="line"
                     label="Line"
                     component={TextField}
+                    section="cruise"
                     isRequired
                   />
                   <Field
                     name="ship"
                     label="Ship"
                     component={TextField}
+                    section="cruise"
                     isRequired
                   />
                   <Field
                     name="port"
                     label="Port"
                     component={TextField}
+                    section="cruise"
                     isRequired
                   />
                   <Field
                     name="days"
                     label="Days"
                     component={TextField}
+                    section="cruise"
                     isRequired
                   />
-                  <div>
-                    <Button
-                      onClick={() => validateForm(props)}
-                      variant="outlined"
-                      color="primary"
-                      className={classes.button}
-                    >
-                      Validate
-                    </Button>
-                  </div>
                 </div>
               </ExpansionPanelDetails>
             </ExpansionPanel>

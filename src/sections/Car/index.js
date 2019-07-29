@@ -6,8 +6,7 @@ import {
   ExpansionPanel,
   ExpansionPanelDetails,
   ExpansionPanelSummary,
-  Typography,
-  Button
+  Typography
 } from '@material-ui/core';
 import { CarsSchema } from '../shared/schemas';
 import { CarsValidation } from '../shared/validation';
@@ -36,20 +35,11 @@ export default function Car() {
   const classes = useStyles();
   const { expanded, toggle } = useToggle(false);
 
-  const validateForm = props => {
-    const { isValid, submitForm, values } = props;
-    submitForm();
-    if (isValid) {
-      // console.log('values:', values);
-    }
-  };
-
   return (
     <div>
       <Formik
         initialValues={CarsSchema}
         validationSchema={CarsValidation}
-        onSubmit={values => console.log(JSON.stringify(values, null, 2))}
         render={props => {
           // console.log('cars:', props);
           return (
@@ -67,24 +57,28 @@ export default function Car() {
                     name="make"
                     label="Make"
                     component={TextField}
+                    section="car"
                     isRequired
                   />
                   <Field
                     name="model"
                     label="Model"
                     component={TextField}
+                    section="car"
                     isRequired
                   />
                   <Field
                     name="year"
                     label="Year"
                     component={TextField}
+                    section="car"
                     isRequired
                   />
                   <Field
                     name="color"
                     label="Color"
                     component={TextField}
+                    section="car"
                     isRequired
                   />
                   <Field
@@ -99,16 +93,6 @@ export default function Car() {
                     component={TextField}
                     isRequired
                   />
-                  <div>
-                    <Button
-                      onClick={() => validateForm(props)}
-                      variant="outlined"
-                      color="primary"
-                      className={classes.button}
-                    >
-                      Validate
-                    </Button>
-                  </div>
                 </div>
               </ExpansionPanelDetails>
             </ExpansionPanel>

@@ -6,8 +6,7 @@ import {
   ExpansionPanel,
   ExpansionPanelDetails,
   ExpansionPanelSummary,
-  Typography,
-  Button
+  Typography
 } from '@material-ui/core';
 import { FlightsSchema } from '../shared/schemas';
 import { FlightsValidation } from '../shared/validation';
@@ -37,20 +36,11 @@ export default function Flight() {
   const classes = useStyles();
   const { expanded, toggle } = useToggle(false);
 
-  const validateForm = props => {
-    const { isValid, submitForm, values } = props;
-    submitForm();
-    if (isValid) {
-      // console.log('values:', values);
-    }
-  };
-
   return (
     <div>
       <Formik
         initialValues={FlightsSchema}
         validationSchema={FlightsValidation}
-        onSubmit={values => console.log(JSON.stringify(values, null, 2))}
         render={props => {
           // console.log('flights:', props);
           return (
@@ -68,6 +58,7 @@ export default function Flight() {
                     name="airline"
                     label="Airline"
                     component={TextField}
+                    section="flight"
                     isRequired
                   />
                   <Field
@@ -86,24 +77,16 @@ export default function Flight() {
                     name="fromCity"
                     label="From City"
                     component={TextField}
+                    section="flight"
                     isRequired
                   />
                   <Field
                     name="toCity"
                     label="To City"
                     component={TextField}
+                    section="flight"
                     isRequired
                   />
-                  <div>
-                    <Button
-                      onClick={() => validateForm(props)}
-                      variant="outlined"
-                      color="primary"
-                      className={classes.button}
-                    >
-                      Validate
-                    </Button>
-                  </div>
                 </div>
               </ExpansionPanelDetails>
             </ExpansionPanel>
