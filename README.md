@@ -1,68 +1,22 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## PL Travel Planer
 
-## Available Scripts
+This project uses the following technologies: CRA, React, Hooks, Redux, Thunks, Material UI, Formik, Yup and Moment
 
-In the project directory, you can run:
+### Overview
 
-### `npm start`
+The app simulates a trip planner for the purposes of travel. There are five available sections. By default the User expansion Panel is open. Once the user fills is out correclty, and the fields validate, the other sections will be available to open. In order to submit, the User section and at least one other section must be filled out and validate. Once those requirements are met, the user can submit the form. At this point, the form fields should reset, and an alert will open with the JSON payload that is being mimiced that would be sent upon submission.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Other features
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+The user will get feedback if a field is invalid. Additionally, the user can search by their email to pre-fill the fields in the form. Those fields will then become read-only, as the user is not allowed to change them. Upon validating, the user is allowed to reset the user section should they want to fill it out differently. The date fields in the other sections will have a dependency on the travel dates filled out in the user section. Basically, the user is not allowed to book dates in the other sections are that are before the start date or after the end date.
 
-### `npm test`
+### API for User
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+jsonplaceholder.typicode.com was used to mimic API calls to fetch a users data. There are two useful endpoints provided:
 
-### `npm run build`
+10 Users at as time: [https://jsonplaceholder.typicode.com/users](https://jsonplaceholder.typicode.com/users)
+Information for a user based on a search key : [https://jsonplaceholder.typicode.com/users?email=Sincere@april.biz](https://jsonplaceholder.typicode.com/users?email=Sincere@april.biz)
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Deployed version
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+You can visit the deployed version here: [PL Travel Planer](https://reactjs.org/).
