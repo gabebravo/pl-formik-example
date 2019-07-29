@@ -12,10 +12,10 @@ The user will get feedback if a field is invalid. Additionally, the user can sea
 
 ### API for User
 
-jsonplaceholder.typicode.com was used to mimic API calls to fetch a users data. There are two useful endpoints provided:
+<b>jsonplaceholder.typicode.com</b> was used to mimic API calls to fetch a users data. There are two useful endpoints provided:
 
-10 Users at as time: [https://jsonplaceholder.typicode.com/users](https://jsonplaceholder.typicode.com/users)
-Information for a user based on a search key : [https://jsonplaceholder.typicode.com/users?email=Sincere@april.biz](https://jsonplaceholder.typicode.com/users?email=Sincere@april.biz)
+10 Users at as time: [https://jsonplaceholder.typicode.com/users](https://jsonplaceholder.typicode.com/users)<br>
+<>Information for a user based on a search key : [https://jsonplaceholder.typicode.com/users?email=Sincere@april.biz](https://jsonplaceholder.typicode.com/users?email=Sincere@april.biz)
 
 ### Deployed version
 
