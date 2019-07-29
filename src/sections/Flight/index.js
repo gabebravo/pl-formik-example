@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Flight() {
+export default function Flight({ userIsValid }) {
   const classes = useStyles();
   const { expanded, toggle } = useToggle(false);
 
@@ -44,7 +44,10 @@ export default function Flight() {
         render={props => {
           // console.log('flights:', props);
           return (
-            <ExpansionPanel expanded={expanded} onChange={toggle}>
+            <ExpansionPanel
+              expanded={userIsValid && expanded}
+              onChange={toggle}
+            >
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel4bh-content"

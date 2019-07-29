@@ -19,10 +19,10 @@ function App({ valid, values }) {
     <div>
       <Header headerText="PL Trip Planner" />
       <User />
-      <Car />
-      <Cruise />
-      <Flight />
-      <Hotel />
+      <Car userIsValid={valid.user} />
+      <Cruise userIsValid={valid.user} />
+      <Flight userIsValid={valid.user} />
+      <Hotel userIsValid={valid.user} />
       <div style={{ flex: '1' }}>
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
           <Button

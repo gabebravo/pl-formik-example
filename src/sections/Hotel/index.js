@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Hotel() {
+export default function Hotel({ userIsValid }) {
   const classes = useStyles();
   const { expanded, toggle } = useToggle(false);
 
@@ -44,7 +44,10 @@ export default function Hotel() {
         render={props => {
           console.log('hotels:', props);
           return (
-            <ExpansionPanel expanded={expanded} onChange={toggle}>
+            <ExpansionPanel
+              expanded={userIsValid && expanded}
+              onChange={toggle}
+            >
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel5bh-content"

@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Car() {
+export default function Car({ userIsValid }) {
   const classes = useStyles();
   const { expanded, toggle } = useToggle(false);
 
@@ -43,7 +43,10 @@ export default function Car() {
         render={props => {
           // console.log('cars:', props);
           return (
-            <ExpansionPanel expanded={expanded} onChange={toggle}>
+            <ExpansionPanel
+              expanded={userIsValid && expanded}
+              onChange={toggle}
+            >
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel2bh-content"

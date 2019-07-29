@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Cruise() {
+export default function Cruise({ userIsValid }) {
   const classes = useStyles();
   const { expanded, toggle } = useToggle(false);
 
@@ -43,7 +43,10 @@ export default function Cruise() {
         render={props => {
           // console.log('cruises:', props);
           return (
-            <ExpansionPanel expanded={expanded} onChange={toggle}>
+            <ExpansionPanel
+              expanded={userIsValid && expanded}
+              onChange={toggle}
+            >
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel3bh-content"
