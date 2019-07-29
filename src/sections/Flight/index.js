@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Flight({ userIsValid }) {
   const classes = useStyles();
-  const { expanded, toggle } = useToggle(false);
+  const { expanded, toggle } = useToggle(false, userIsValid);
 
   return (
     <div>

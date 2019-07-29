@@ -1,10 +1,10 @@
 import React from 'react';
 
-function useToggle(initValue) {
+function useToggle(initValue, userIsValid) {
   const [expanded, setExpanded] = React.useState(initValue);
 
   function toggle() {
-    setExpanded(prevVal => !prevVal);
+    userIsValid && setExpanded(prevVal => !prevVal);
   }
 
   return { expanded, toggle };

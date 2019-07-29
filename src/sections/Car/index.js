@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Car({ userIsValid }) {
   const classes = useStyles();
-  const { expanded, toggle } = useToggle(false);
+  const { expanded, toggle } = useToggle(false, userIsValid);
 
   return (
     <div>
