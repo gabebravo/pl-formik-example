@@ -45,7 +45,10 @@ function App({ valid, values }) {
   );
 }
 
-const mapStateToProps = state => ({ ...state.plTravel });
+const mapStateToProps = state => ({
+  valid: state.plTravel.valid,
+  values: state.plTravel.values
+});
 
 export default connect(
   mapStateToProps,

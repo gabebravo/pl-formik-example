@@ -45,6 +45,6 @@ export const HotelsSchema = {
   chain: '',
   city: '',
   days: '',
-  startDate: '',
-  endDate: ''
+  checkInDate: '',
+  leaveDate: ''
 };

@@ -42,7 +42,7 @@ export default function Hotel() {
         initialValues={HotelsSchema}
         validationSchema={HotelsValidation}
         render={props => {
-          // console.log('hotels:', props);
+          console.log('hotels:', props);
           return (
             <ExpansionPanel expanded={expanded} onChange={toggle}>
               <ExpansionPanelSummary
@@ -76,13 +76,13 @@ export default function Hotel() {
                     isRequired
                   />
                   <Field
-                    name="startDate"
+                    name="checkInDate"
                     label="Start Date"
                     component={DateField}
                     isRequired
                   />
                   <Field
-                    name="endDate"
+                    name="leaveDate"
                     label="End Date"
                     component={DateField}
                     isRequired

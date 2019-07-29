@@ -41,7 +41,7 @@ export default function Car() {
         initialValues={CarsSchema}
         validationSchema={CarsValidation}
         render={props => {
-          console.log('cars:', props);
+          // console.log('cars:', props);
           return (
             <ExpansionPanel expanded={expanded} onChange={toggle}>
               <ExpansionPanelSummary
