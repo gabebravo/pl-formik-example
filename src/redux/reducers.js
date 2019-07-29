@@ -22,7 +22,7 @@ const defaultState = {
 // ACTIONS
 export const setUserData = createAction('SET_USER_DATA');
 export const resetReadOnlyFlag = createAction('RESET_READ_ONLY_FLAG');
-export const setSectionValues = createAction('SET_USER_DATA');
+export const setSectionValues = createAction('SET_SECTION_VALUES');
 export const setValidationFlag = createAction('SET_VALIDATION_FLAG');
 
 // REDUCERS
