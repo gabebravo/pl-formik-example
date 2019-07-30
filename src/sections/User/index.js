@@ -53,8 +53,6 @@ function User({ resetReadOnly, readOnly }) {
     });
   }
 
-  console.log('readOnly', readOnly);
-
   return (
     <div>
       <Formik

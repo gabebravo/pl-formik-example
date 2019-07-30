@@ -48,6 +48,8 @@ function Text({
     section && setSectionValues({ section, values });
   }, [values]);
 
+  console.log('re-render');
+
   return (
     <TextField
       {...field}

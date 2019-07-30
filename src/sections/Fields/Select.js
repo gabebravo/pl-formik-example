@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
@@ -15,7 +14,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function SimpleSelect({
   field, // { name, value, onChange, onBlur }
-  form: { touched, errors, setFieldValue }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+  form: { setFieldValue }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
   ...props
 }) {
   const classes = useStyles();
@@ -23,7 +22,7 @@ export default function SimpleSelect({
     state: 'FL',
     name: 'Florida'
   });
-  const { label, list, isRequired = false, readOnly = false } = props;
+  const { label, list, readOnly = false } = props;
 
   React.useEffect(() => {
     setFieldValue(field.name, value.state);

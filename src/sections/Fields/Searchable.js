@@ -82,9 +82,9 @@ function Searchable({
   );
 }
 
-const mapStateToProps = ({ values, valid }) => ({ values, valid });
+// const mapStateToProps = ({ values, valid }) => ({ values, valid });
 
 export default connect(
-  mapStateToProps,
+  null,
   { fetchUserData }
 )(Searchable);
