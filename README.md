@@ -1,6 +1,6 @@
 ## PL Travel Planer
 
-This project uses the following technologies: CRA, React, Hooks, Redux, Thunks, Material UI, Formik, Yup and Moment
+This project uses the following technologies: CRA, React, Hooks, Redux, Thunks, Material UI, Formik, Yup and Moment. Although the scale is smaller in the demo, the patterns can be used to solve the problem of having more than 100 fields per a single view. By splitting fields up into individual Formiks, the user experience is greatly improved based on much faster field responsiveness due to less re-renderings. By using Redux as the glue, all form state can still be accessed at the end.
 
 ### Overview
 
