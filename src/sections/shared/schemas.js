@@ -38,14 +38,14 @@ export const FlightSchema = {
   airline: '',
   fromCity: '',
   toCity: '',
-  departureDate: '',
-  returnDate: ''
+  departureDate: moment(new Date()).format('MM/DD/YYYY'),
+  returnDate: moment(new Date()).format('MM/DD/YYYY')
 };
 
 // Initial Values for Hotels Schema
 export const HotelSchema = {
   chain: '',
   city: '',
-  checkInDate: '',
-  leaveDate: ''
+  checkInDate: moment(new Date()).format('MM/DD/YYYY'),
+  leaveDate: moment(new Date()).format('MM/DD/YYYY')
 };

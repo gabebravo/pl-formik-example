@@ -26,7 +26,7 @@ export default function SimpleSelect({
 
   React.useEffect(() => {
     setFieldValue(field.name, value.state);
-  }, [value.state]);
+  }, [value.state, field.name, setFieldValue]);
 
   function handleChange(event) {
     setValues(oldValues => ({
