@@ -8,8 +8,8 @@ import {
   ExpansionPanelSummary,
   Typography
 } from '@material-ui/core';
-import { CruisesSchema } from '../shared/schemas';
-import { CruisesValidation } from '../shared/validation';
+import { CruiseSchema } from '../shared/schemas';
+import { CruiseValidation } from '../shared/validation';
 import TextField from '../Fields/Text';
 import { useToggle } from '../../hooks';
 
@@ -38,8 +38,8 @@ export default function Cruise({ userIsValid }) {
   return (
     <div>
       <Formik
-        initialValues={CruisesSchema}
-        validationSchema={CruisesValidation}
+        initialValues={CruiseSchema}
+        validationSchema={CruiseValidation}
         render={props => {
           // console.log('cruises:', props);
           return (

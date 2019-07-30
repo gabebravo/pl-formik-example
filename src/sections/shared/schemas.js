@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 // Initial Values for User Schema
 export const UserSchema = {
   firstName: '',
@@ -9,12 +11,12 @@ export const UserSchema = {
     state: 'FL',
     zip: ''
   },
-  startDate: '',
-  endDate: ''
+  startDate: moment(new Date()).format('MM/DD/YYYY'),
+  endDate: moment(new Date()).format('MM/DD/YYYY')
 };
 
 // Initial Values for Cars Schema
-export const CarsSchema = {
+export const CarSchema = {
   make: '',
   model: '',
   year: '',
@@ -24,7 +26,7 @@ export const CarsSchema = {
 };
 
 // Initial Values for Cruises Schema
-export const CruisesSchema = {
+export const CruiseSchema = {
   line: '',
   ship: '',
   port: '',
@@ -32,7 +34,7 @@ export const CruisesSchema = {
 };
 
 // Initial Values for Flights Schema
-export const FlightsSchema = {
+export const FlightSchema = {
   airline: '',
   departureDate: '',
   returnDate: '',
@@ -41,7 +43,7 @@ export const FlightsSchema = {
 };
 
 // Initial Values for Hotels Schema
-export const HotelsSchema = {
+export const HotelSchema = {
   chain: '',
   city: '',
   days: '',

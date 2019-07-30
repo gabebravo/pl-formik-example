@@ -1,13 +1,20 @@
 import { createAction, handleActions } from 'redux-actions';
 import { transformUser } from '../sections/shared/helpers';
+import {
+  UserSchema,
+  CarSchema,
+  CruiseSchema,
+  FlightSchema,
+  HotelSchema
+} from '../sections/shared/schemas';
 
 const defaultState = {
   values: {
-    user: null,
-    car: null,
-    cruise: null,
-    flight: null,
-    hotel: null
+    user: UserSchema,
+    car: CarSchema,
+    cruise: CruiseSchema,
+    flight: FlightSchema,
+    hotel: HotelSchema
   },
   valid: {
     user: false,

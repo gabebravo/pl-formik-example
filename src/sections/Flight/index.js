@@ -8,8 +8,8 @@ import {
   ExpansionPanelSummary,
   Typography
 } from '@material-ui/core';
-import { FlightsSchema } from '../shared/schemas';
-import { FlightsValidation } from '../shared/validation';
+import { FlightSchema } from '../shared/schemas';
+import { FlightValidation } from '../shared/validation';
 import TextField from '../Fields/Text';
 import DateField from '../Fields/Date';
 import { useToggle } from '../../hooks';
@@ -32,15 +32,15 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Flight({ userIsValid }) {
+export default function Flight({ userIsValid, userStartDate, userEndDate }) {
   const classes = useStyles();
   const { expanded, toggle } = useToggle(false, userIsValid);
 
   return (
     <div>
       <Formik
-        initialValues={FlightsSchema}
-        validationSchema={FlightsValidation}
+        initialValues={FlightSchema}
+        validationSchema={FlightValidation}
         render={props => {
           // console.log('flights:', props);
           return (

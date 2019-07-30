@@ -8,8 +8,8 @@ import {
   ExpansionPanelSummary,
   Typography
 } from '@material-ui/core';
-import { HotelsSchema } from '../shared/schemas';
-import { HotelsValidation } from '../shared/validation';
+import { HotelSchema } from '../shared/schemas';
+import { HotelValidation } from '../shared/validation';
 import TextField from '../Fields/Text';
 import DateField from '../Fields/Date';
 import { useToggle } from '../../hooks';
@@ -39,10 +39,10 @@ export default function Hotel({ userIsValid }) {
   return (
     <div>
       <Formik
-        initialValues={HotelsSchema}
-        validationSchema={HotelsValidation}
+        initialValues={HotelSchema}
+        validationSchema={HotelValidation}
         render={props => {
-          console.log('hotels:', props);
+          // console.log('hotels:', props);
           return (
             <ExpansionPanel
               expanded={userIsValid && expanded}

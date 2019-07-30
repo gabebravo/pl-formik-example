@@ -8,8 +8,8 @@ import {
   ExpansionPanelSummary,
   Typography
 } from '@material-ui/core';
-import { CarsSchema } from '../shared/schemas';
-import { CarsValidation } from '../shared/validation';
+import { CarSchema } from '../shared/schemas';
+import { CarValidation } from '../shared/validation';
 import TextField from '../Fields/Text';
 import { useToggle } from '../../hooks';
 
@@ -38,8 +38,8 @@ export default function Car({ userIsValid }) {
   return (
     <div>
       <Formik
-        initialValues={CarsSchema}
-        validationSchema={CarsValidation}
+        initialValues={CarSchema}
+        validationSchema={CarValidation}
         render={props => {
           // console.log('cars:', props);
           return (
