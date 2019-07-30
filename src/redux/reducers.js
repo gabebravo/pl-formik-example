@@ -7,6 +7,7 @@ import {
   FlightSchema,
   HotelSchema
 } from '../sections/shared/schemas';
+import { userAPI } from '../sections/shared/constants';
 
 const defaultState = {
   values: {
@@ -69,7 +70,7 @@ export const fetchUserData = ({
   formObj: { setValues, validateForm }
 }) => (dispatch, getState) => {
   // Sincere@april.biz
-  fetch(`https://jsonplaceholder.typicode.com/users?email=${email}`)
+  fetch(`${userAPI}=${email}`)
     .then(res => res.json())
     .then(data => {
       if (data.length > 0) {

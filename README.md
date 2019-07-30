@@ -21,3 +21,8 @@ Test user: Sincere@april.biz
 ### Deployed version
 
 You can visit the deployed version here: [PL Travel Planer](https://reactjs.org/).
+
+##### TODO
+
+Make API call function more flexible - use other search params<br>
+Add modal to handle scenario where no users are found

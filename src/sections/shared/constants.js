@@ -50,3 +50,5 @@ export const STATES = [
   { name: 'Wisconsin', state: 'WI' },
   { name: 'Wyomin', state: '	WY' }
 ];
+
+export const userAPI = 'https://jsonplaceholder.typicode.com/users?email';
