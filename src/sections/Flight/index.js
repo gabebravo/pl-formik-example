@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik, Field } from 'formik';
+import { Field } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {
@@ -31,63 +31,59 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Flight({ userIsValid, userStartDate, userEndDate }) {
+export default function Flight({ userIsValid, resetForm, ...props }) {
   const classes = useStyles();
   const { expanded, toggle } = useToggle(false, userIsValid);
+  const { setValues, setTouched } = props;
+
+  React.useEffect(() => {
+    setValues(FlightSchema);
+    setTouched({});
+  }, [resetForm, setValues, setTouched]);
 
   return (
     <div>
-      <Formik
-        initialValues={FlightSchema}
-        render={props => {
-          return (
-            <ExpansionPanel
-              expanded={userIsValid && expanded}
-              onChange={toggle}
-            >
-              <ExpansionPanelSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel4bh-content"
-                id="panel4bh-header"
-              >
-                <Typography className={classes.heading}>Flights</Typography>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                <div>
-                  <Field
-                    name="airline"
-                    label="Airline"
-                    component={TextField}
-                    section="flight"
-                  />
-                  <Field
-                    name="fromCity"
-                    label="From City"
-                    component={TextField}
-                    section="flight"
-                  />
-                  <Field
-                    name="toCity"
-                    label="To City"
-                    component={TextField}
-                    section="flight"
-                  />
-                  <Field
-                    name="departureDate"
-                    label="Departure Date"
-                    component={DateField}
-                  />
-                  <Field
-                    name="returnDate"
-                    label="Return Date"
-                    component={DateField}
-                  />
-                </div>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
-          );
-        }}
-      />
+      <ExpansionPanel expanded={userIsValid && expanded} onChange={toggle}>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel4bh-content"
+          id="panel4bh-header"
+        >
+          <Typography className={classes.heading}>Flights</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <div>
+            <Field
+              name="airline"
+              label="Airline"
+              component={TextField}
+              section="flight"
+            />
+            <Field
+              name="fromCity"
+              label="From City"
+              component={TextField}
+              section="flight"
+            />
+            <Field
+              name="toCity"
+              label="To City"
+              component={TextField}
+              section="flight"
+            />
+            <Field
+              name="departureDate"
+              label="Departure Date"
+              component={DateField}
+            />
+            <Field
+              name="returnDate"
+              label="Return Date"
+              component={DateField}
+            />
+          </div>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
     </div>
   );
 }

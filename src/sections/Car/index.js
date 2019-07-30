@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik, Field } from 'formik';
+import { Field } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {
@@ -30,71 +30,67 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Car({ userIsValid }) {
+export default function Car({ userIsValid, resetForm, ...props }) {
   const classes = useStyles();
   const { expanded, toggle } = useToggle(false, userIsValid);
+  const { setValues, setTouched } = props;
+
+  React.useEffect(() => {
+    setValues(CarSchema);
+    setTouched({});
+  }, [resetForm, setValues, setTouched]);
 
   return (
     <div>
-      <Formik
-        initialValues={CarSchema}
-        render={props => {
-          return (
-            <ExpansionPanel
-              expanded={userIsValid && expanded}
-              onChange={toggle}
-            >
-              <ExpansionPanelSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel2bh-content"
-                id="panel2bh-header"
-              >
-                <Typography className={classes.heading}>Cars</Typography>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                <div>
-                  <Field
-                    name="make"
-                    label="Make"
-                    component={TextField}
-                    section="car"
-                  />
-                  <Field
-                    name="model"
-                    label="Model"
-                    component={TextField}
-                    section="car"
-                  />
-                  <Field
-                    name="year"
-                    label="Year"
-                    component={TextField}
-                    section="car"
-                  />
-                  <Field
-                    name="color"
-                    label="Color"
-                    component={TextField}
-                    section="car"
-                  />
-                  <Field
-                    name="pickupCity"
-                    label="Pickup City"
-                    component={TextField}
-                    section="car"
-                  />
-                  <Field
-                    name="dropoffCity"
-                    label="Dropoff City"
-                    component={TextField}
-                    section="car"
-                  />
-                </div>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
-          );
-        }}
-      />
+      <ExpansionPanel expanded={userIsValid && expanded} onChange={toggle}>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2bh-content"
+          id="panel2bh-header"
+        >
+          <Typography className={classes.heading}>Cars</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <div>
+            <Field
+              name="make"
+              label="Make"
+              component={TextField}
+              section="car"
+            />
+            <Field
+              name="model"
+              label="Model"
+              component={TextField}
+              section="car"
+            />
+            <Field
+              name="year"
+              label="Year"
+              component={TextField}
+              section="car"
+            />
+            <Field
+              name="color"
+              label="Color"
+              component={TextField}
+              section="car"
+            />
+            <Field
+              name="pickupCity"
+              label="Pickup City"
+              component={TextField}
+              section="car"
+            />
+            <Field
+              name="dropoffCity"
+              label="Dropoff City"
+              component={TextField}
+              section="car"
+            />
+          </div>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
     </div>
   );
 }

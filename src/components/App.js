@@ -2,7 +2,13 @@ import React from 'react';
 import { Formik } from 'formik';
 import { Button } from '@material-ui/core';
 import { connect } from 'react-redux';
-import { UserSchema } from '../sections/shared/schemas';
+import {
+  UserSchema,
+  CarSchema,
+  CruiseSchema,
+  FlightSchema,
+  HotelSchema
+} from '../sections/shared/schemas';
 import { UserValidation } from '../sections/shared/validation';
 import Header from './Header';
 import User from '../sections/User';
@@ -28,10 +34,42 @@ function App({ valid, values, resetFormSubmitFlag, formSubmitted }) {
         validationSchema={UserValidation}
         render={props => <User {...props} resetForm={formSubmitted} />}
       />
-      <Car userIsValid={valid.user} />
-      <Cruise userIsValid={valid.user} />
-      <Flight userIsValid={valid.user} />
-      <Hotel userIsValid={valid.user} />
+      <Formik
+        initialValues={CarSchema}
+        render={props => (
+          <Car {...props} userIsValid={valid.user} resetForm={formSubmitted} />
+        )}
+      />
+      <Formik
+        initialValues={CruiseSchema}
+        render={props => (
+          <Cruise
+            {...props}
+            userIsValid={valid.user}
+            resetForm={formSubmitted}
+          />
+        )}
+      />
+      <Formik
+        initialValues={FlightSchema}
+        render={props => (
+          <Flight
+            {...props}
+            userIsValid={valid.user}
+            resetForm={formSubmitted}
+          />
+        )}
+      />
+      <Formik
+        initialValues={HotelSchema}
+        render={props => (
+          <Hotel
+            {...props}
+            userIsValid={valid.user}
+            resetForm={formSubmitted}
+          />
+        )}
+      />
       <div style={{ flex: '1' }}>
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
           <Button

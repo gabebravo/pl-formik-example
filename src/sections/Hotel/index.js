@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik, Field } from 'formik';
+import { Field } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {
@@ -31,57 +31,49 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Hotel({ userIsValid }) {
+export default function Hotel({ userIsValid, resetForm, ...props }) {
   const classes = useStyles();
   const { expanded, toggle } = useToggle(false, userIsValid);
+  const { setValues, setTouched } = props;
+
+  React.useEffect(() => {
+    setValues(HotelSchema);
+    setTouched({});
+  }, [resetForm, setValues, setTouched]);
 
   return (
     <div>
-      <Formik
-        initialValues={HotelSchema}
-        render={props => {
-          return (
-            <ExpansionPanel
-              expanded={userIsValid && expanded}
-              onChange={toggle}
-            >
-              <ExpansionPanelSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel5bh-content"
-                id="panel5bh-header"
-              >
-                <Typography className={classes.heading}>Hotels</Typography>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                <div>
-                  <Field
-                    name="chain"
-                    label="Chain"
-                    component={TextField}
-                    section="hotel"
-                  />
-                  <Field
-                    name="city"
-                    label="City"
-                    component={TextField}
-                    section="hotel"
-                  />
-                  <Field
-                    name="checkInDate"
-                    label="Start Date"
-                    component={DateField}
-                  />
-                  <Field
-                    name="leaveDate"
-                    label="End Date"
-                    component={DateField}
-                  />
-                </div>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
-          );
-        }}
-      />
+      <ExpansionPanel expanded={userIsValid && expanded} onChange={toggle}>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel5bh-content"
+          id="panel5bh-header"
+        >
+          <Typography className={classes.heading}>Hotels</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <div>
+            <Field
+              name="chain"
+              label="Chain"
+              component={TextField}
+              section="hotel"
+            />
+            <Field
+              name="city"
+              label="City"
+              component={TextField}
+              section="hotel"
+            />
+            <Field
+              name="checkInDate"
+              label="Start Date"
+              component={DateField}
+            />
+            <Field name="leaveDate" label="End Date" component={DateField} />
+          </div>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
     </div>
   );
 }

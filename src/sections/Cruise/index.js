@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik, Field } from 'formik';
+import { Field } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {
@@ -30,58 +30,55 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Cruise({ userIsValid }) {
+export default function Cruise({ userIsValid, resetForm, ...props }) {
   const classes = useStyles();
   const { expanded, toggle } = useToggle(false, userIsValid);
+  const { setValues, setTouched } = props;
+
+  React.useEffect(() => {
+    setValues(CruiseSchema);
+    setTouched({});
+  }, [resetForm, setValues, setTouched]);
 
   return (
     <div>
-      <Formik
-        initialValues={CruiseSchema}
-        render={props => {
-          return (
-            <ExpansionPanel
-              expanded={userIsValid && expanded}
-              onChange={toggle}
-            >
-              <ExpansionPanelSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel3bh-content"
-                id="panel3bh-header"
-              >
-                <Typography className={classes.heading}>Cruises</Typography>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                <div>
-                  <Field
-                    name="line"
-                    label="Line"
-                    component={TextField}
-                    section="cruise"
-                  />
-                  <Field
-                    name="ship"
-                    label="Ship"
-                    component={TextField}
-                    section="cruise"
-                  />
-                  <Field
-                    name="port"
-                    label="Port"
-                    component={TextField}
-                    section="cruise"
-                  />
-                  <Field
-                    name="days"
-                    label="Days"
-                    component={TextField}
-                    section="cruise"
-                  />
-                </div>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
-          );
-        }}
+      <ExpansionPanel expanded={userIsValid && expanded} onChange={toggle}>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel3bh-content"
+          id="panel3bh-header"
+        >
+          <Typography className={classes.heading}>Cruises</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <div>
+            <Field
+              name="line"
+              label="Line"
+              component={TextField}
+              section="cruise"
+            />
+            <Field
+              name="ship"
+              label="Ship"
+              component={TextField}
+              section="cruise"
+            />
+            <Field
+              name="port"
+              label="Port"
+              component={TextField}
+              section="cruise"
+            />
+            <Field
+              name="days"
+              label="Days"
+              component={TextField}
+              section="cruise"
+            />
+          </div>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
       />
     </div>
   );

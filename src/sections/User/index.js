@@ -43,23 +43,19 @@ const useStyles = makeStyles(theme => ({
 function User({ resetReadOnly, readOnly, resetForm, ...props }) {
   const classes = useStyles();
   const { expanded, toggle } = useToggle(true);
-  const { setValues, setTouched } = props;
+  const { setValues, setTouched, touched, isValid } = props;
 
   React.useEffect(() => {
-    console.log('this is firing');
     setValues(UserSchema);
     setTouched({});
-  }, [resetForm]);
+  }, [resetForm, setValues, setTouched]);
 
-  function resetHandler(props) {
-    const { setValues, setTouched } = props;
+  function resetHandler() {
     resetReadOnly({
       UserSchema,
       formObj: { setValues, setTouched }
     });
   }
-
-  console.log('props', props);
 
   return (
     <div>
@@ -141,10 +137,10 @@ function User({ resetReadOnly, readOnly, resetForm, ...props }) {
               isRequired
             />
             <div>
-              {!_isEmpty(props.touched) && props.isValid && (
+              {!_isEmpty(touched) && isValid && (
                 <Button
                   variant="outlined"
-                  onClick={() => resetHandler(props)}
+                  onClick={resetHandler}
                   className={classes.activeBtn}
                 >
                   Reset
