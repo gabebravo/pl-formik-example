@@ -41,12 +41,12 @@ function Text({
   React.useEffect(() => {
     // NOTE : this useEffect will trigger at the form-level
     section && setValidationFlag({ section, isValid });
-  }, [isValid]);
+  }, [isValid, section, setValidationFlag]);
 
   React.useEffect(() => {
     // NOTE : this useEffect will trigger at the form-level
     section && setSectionValues({ section, values });
-  }, [values]);
+  }, [values, section, setSectionValues]);
 
   return (
     <TextField

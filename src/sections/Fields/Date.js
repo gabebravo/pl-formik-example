@@ -25,7 +25,7 @@ export default function DatePickers({
   React.useEffect(() => {
     const dateAsString = moment(selectedDate).format('MM/DD/YYYY');
     setFieldValue(field.name, dateAsString);
-  }, []);
+  }, [field.name, setFieldValue]);
 
   async function handleDateChange(event) {
     const dateAsString = moment(event).format('MM/DD/YYYY');
