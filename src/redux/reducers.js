@@ -23,7 +23,8 @@ const defaultState = {
     flight: false,
     hotel: false
   },
-  readOnly: false
+  readOnly: false,
+  formSubmitted: false
 };
 
 // ACTIONS
@@ -31,6 +32,7 @@ export const setUserData = createAction('SET_USER_DATA');
 export const resetReadOnlyFlag = createAction('RESET_READ_ONLY_FLAG');
 export const setSectionValues = createAction('SET_SECTION_VALUES');
 export const setValidationFlag = createAction('SET_VALIDATION_FLAG');
+export const resetFormSubmitFlag = createAction('RESET_FORM_SUBMIT_FLAG');
 
 // REDUCERS
 export default handleActions(
@@ -52,6 +54,10 @@ export default handleActions(
     [setValidationFlag]: (state, { payload }) => ({
       ...state,
       valid: { ...state.valid, [payload.section]: payload.isValid }
+    }),
+    [resetFormSubmitFlag]: state => ({
+      ...defaultState,
+      formSubmitted: !state.formSubmitted
     })
   },
   defaultState
