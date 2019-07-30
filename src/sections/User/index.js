@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik, Field } from 'formik';
+import { Field } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {
@@ -11,7 +11,6 @@ import {
 } from '@material-ui/core';
 import _isEmpty from 'lodash/isEmpty';
 import { UserSchema } from '../shared/schemas';
-import { UserValidation } from '../shared/validation';
 import TextField from '../Fields/Text';
 import SearchableField from '../Fields/Searchable';
 import DateField from '../Fields/Date';
@@ -41,9 +40,16 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function User({ resetReadOnly, readOnly }) {
+function User({ resetReadOnly, readOnly, resetForm, ...props }) {
   const classes = useStyles();
   const { expanded, toggle } = useToggle(true);
+  const { setValues, setTouched } = props;
+
+  React.useEffect(() => {
+    console.log('this is firing');
+    setValues(UserSchema);
+    setTouched({});
+  }, [resetForm]);
 
   function resetHandler(props) {
     const { setValues, setTouched } = props;
@@ -53,107 +59,101 @@ function User({ resetReadOnly, readOnly }) {
     });
   }
 
+  console.log('props', props);
+
   return (
     <div>
-      <Formik
-        initialValues={UserSchema}
-        validationSchema={UserValidation}
-        render={props => {
-          return (
-            <ExpansionPanel expanded={expanded} onChange={toggle}>
-              <ExpansionPanelSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1bh-content"
-                id="panel1bh-header"
-              >
-                <Typography className={classes.heading}>User</Typography>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                <div>
-                  <Field
-                    name="email"
-                    label="Email"
-                    component={SearchableField}
-                    readOnly={readOnly}
-                    isRequired
-                  />
-                  <Field
-                    name="firstName"
-                    label="First Name"
-                    component={TextField}
-                    readOnly={readOnly}
-                    section="user"
-                    isRequired
-                  />
-                  <Field
-                    name="lastName"
-                    label="Last Name"
-                    component={TextField}
-                    readOnly={readOnly}
-                    section="user"
-                    isRequired
-                  />
-                  <Field
-                    name="address.line1"
-                    label="Line 1"
-                    component={TextField}
-                    readOnly={readOnly}
-                    section="user"
-                    isRequired
-                  />
-                  <Field
-                    name="address.city"
-                    label="City"
-                    component={TextField}
-                    readOnly={readOnly}
-                    section="user"
-                    isRequired
-                  />
-                  <Field
-                    name="address.state"
-                    label="State"
-                    list={STATES}
-                    component={SelectField}
-                    readOnly={readOnly}
-                    isRequired
-                  />
-                  <Field
-                    name="address.zip"
-                    label="Zip"
-                    component={TextField}
-                    readOnly={readOnly}
-                    section="user"
-                    isRequired
-                  />
-                  <Field
-                    name="startDate"
-                    label="Start Date"
-                    component={DateField}
-                    isRequired
-                  />
-                  <Field
-                    name="endDate"
-                    label="End Date"
-                    component={DateField}
-                    isRequired
-                  />
-                  <div>
-                    {!_isEmpty(props.touched) && props.isValid && (
-                      <Button
-                        variant="outlined"
-                        onClick={() => resetHandler(props)}
-                        className={classes.activeBtn}
-                      >
-                        Reset
-                      </Button>
-                    )}
-                  </div>
-                </div>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
-          );
-        }}
-      />
+      <ExpansionPanel expanded={expanded} onChange={toggle}>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1bh-content"
+          id="panel1bh-header"
+        >
+          <Typography className={classes.heading}>User</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <div>
+            <Field
+              name="email"
+              label="Email"
+              component={SearchableField}
+              readOnly={readOnly}
+              isRequired
+            />
+            <Field
+              name="firstName"
+              label="First Name"
+              component={TextField}
+              readOnly={readOnly}
+              section="user"
+              isRequired
+            />
+            <Field
+              name="lastName"
+              label="Last Name"
+              component={TextField}
+              readOnly={readOnly}
+              section="user"
+              isRequired
+            />
+            <Field
+              name="address.line1"
+              label="Line 1"
+              component={TextField}
+              readOnly={readOnly}
+              section="user"
+              isRequired
+            />
+            <Field
+              name="address.city"
+              label="City"
+              component={TextField}
+              readOnly={readOnly}
+              section="user"
+              isRequired
+            />
+            <Field
+              name="address.state"
+              label="State"
+              list={STATES}
+              component={SelectField}
+              readOnly={readOnly}
+              isRequired
+            />
+            <Field
+              name="address.zip"
+              label="Zip"
+              component={TextField}
+              readOnly={readOnly}
+              section="user"
+              isRequired
+            />
+            <Field
+              name="startDate"
+              label="Start Date"
+              component={DateField}
+              isRequired
+            />
+            <Field
+              name="endDate"
+              label="End Date"
+              component={DateField}
+              isRequired
+            />
+            <div>
+              {!_isEmpty(props.touched) && props.isValid && (
+                <Button
+                  variant="outlined"
+                  onClick={() => resetHandler(props)}
+                  className={classes.activeBtn}
+                >
+                  Reset
+                </Button>
+              )}
+            </div>
+          </div>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
     </div>
   );
 }
