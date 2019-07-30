@@ -22,7 +22,7 @@ function App({ valid, values, resetFormSubmitFlag, formSubmitted }) {
   function subitHandler() {
     const { user, car, cruise, flight, hotel } = values;
     const JSONpayload = { user, car, cruise, flight, hotel };
-    alert(JSON.stringify(JSONpayload, null, 2));
+    console.log('JSONpayload:', JSONpayload);
     resetFormSubmitFlag();
   }
 

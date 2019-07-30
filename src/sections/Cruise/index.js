@@ -79,7 +79,6 @@ export default function Cruise({ userIsValid, resetForm, ...props }) {
           </div>
         </ExpansionPanelDetails>
       </ExpansionPanel>
-      />
     </div>
   );
 }
