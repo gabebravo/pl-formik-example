@@ -9,7 +9,6 @@ import {
   Typography
 } from '@material-ui/core';
 import { FlightSchema } from '../shared/schemas';
-import { FlightValidation } from '../shared/validation';
 import TextField from '../Fields/Text';
 import DateField from '../Fields/Date';
 import { useToggle } from '../../hooks';
@@ -40,9 +39,7 @@ export default function Flight({ userIsValid, userStartDate, userEndDate }) {
     <div>
       <Formik
         initialValues={FlightSchema}
-        validationSchema={FlightValidation}
         render={props => {
-          // console.log('flights:', props);
           return (
             <ExpansionPanel
               expanded={userIsValid && expanded}
@@ -62,33 +59,28 @@ export default function Flight({ userIsValid, userStartDate, userEndDate }) {
                     label="Airline"
                     component={TextField}
                     section="flight"
-                    isRequired
-                  />
-                  <Field
-                    name="departureDate"
-                    label="Departure Date"
-                    component={DateField}
-                    isRequired
-                  />
-                  <Field
-                    name="returnDate"
-                    label="Return Date"
-                    component={DateField}
-                    isRequired
                   />
                   <Field
                     name="fromCity"
                     label="From City"
                     component={TextField}
                     section="flight"
-                    isRequired
                   />
                   <Field
                     name="toCity"
                     label="To City"
                     component={TextField}
                     section="flight"
-                    isRequired
+                  />
+                  <Field
+                    name="departureDate"
+                    label="Departure Date"
+                    component={DateField}
+                  />
+                  <Field
+                    name="returnDate"
+                    label="Return Date"
+                    component={DateField}
                   />
                 </div>
               </ExpansionPanelDetails>

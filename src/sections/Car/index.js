@@ -9,7 +9,6 @@ import {
   Typography
 } from '@material-ui/core';
 import { CarSchema } from '../shared/schemas';
-import { CarValidation } from '../shared/validation';
 import TextField from '../Fields/Text';
 import { useToggle } from '../../hooks';
 
@@ -39,9 +38,7 @@ export default function Car({ userIsValid }) {
     <div>
       <Formik
         initialValues={CarSchema}
-        validationSchema={CarValidation}
         render={props => {
-          // console.log('cars:', props);
           return (
             <ExpansionPanel
               expanded={userIsValid && expanded}
@@ -61,42 +58,36 @@ export default function Car({ userIsValid }) {
                     label="Make"
                     component={TextField}
                     section="car"
-                    isRequired
                   />
                   <Field
                     name="model"
                     label="Model"
                     component={TextField}
                     section="car"
-                    isRequired
                   />
                   <Field
                     name="year"
                     label="Year"
                     component={TextField}
                     section="car"
-                    isRequired
                   />
                   <Field
                     name="color"
                     label="Color"
                     component={TextField}
                     section="car"
-                    isRequired
                   />
                   <Field
                     name="pickupCity"
                     label="Pickup City"
                     component={TextField}
                     section="car"
-                    isRequired
                   />
                   <Field
                     name="dropoffCity"
                     label="Dropoff City"
                     component={TextField}
                     section="car"
-                    isRequired
                   />
                 </div>
               </ExpansionPanelDetails>

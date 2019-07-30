@@ -36,17 +36,16 @@ export const CruiseSchema = {
 // Initial Values for Flights Schema
 export const FlightSchema = {
   airline: '',
-  departureDate: '',
-  returnDate: '',
   fromCity: '',
-  toCity: ''
+  toCity: '',
+  departureDate: '',
+  returnDate: ''
 };
 
 // Initial Values for Hotels Schema
 export const HotelSchema = {
   chain: '',
   city: '',
-  days: '',
   checkInDate: '',
   leaveDate: ''
 };

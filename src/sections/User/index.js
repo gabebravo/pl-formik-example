@@ -59,7 +59,6 @@ function User({ resetReadOnly, readOnly }) {
         initialValues={UserSchema}
         validationSchema={UserValidation}
         render={props => {
-          console.log('user:', props);
           return (
             <ExpansionPanel expanded={expanded} onChange={toggle}>
               <ExpansionPanelSummary

@@ -9,7 +9,6 @@ import {
   Typography
 } from '@material-ui/core';
 import { CruiseSchema } from '../shared/schemas';
-import { CruiseValidation } from '../shared/validation';
 import TextField from '../Fields/Text';
 import { useToggle } from '../../hooks';
 
@@ -39,9 +38,7 @@ export default function Cruise({ userIsValid }) {
     <div>
       <Formik
         initialValues={CruiseSchema}
-        validationSchema={CruiseValidation}
         render={props => {
-          // console.log('cruises:', props);
           return (
             <ExpansionPanel
               expanded={userIsValid && expanded}
@@ -61,28 +58,24 @@ export default function Cruise({ userIsValid }) {
                     label="Line"
                     component={TextField}
                     section="cruise"
-                    isRequired
                   />
                   <Field
                     name="ship"
                     label="Ship"
                     component={TextField}
                     section="cruise"
-                    isRequired
                   />
                   <Field
                     name="port"
                     label="Port"
                     component={TextField}
                     section="cruise"
-                    isRequired
                   />
                   <Field
                     name="days"
                     label="Days"
                     component={TextField}
                     section="cruise"
-                    isRequired
                   />
                 </div>
               </ExpansionPanelDetails>

@@ -8,7 +8,7 @@ The app simulates a trip planner for the purposes of travel. There are five avai
 
 ### Other features
 
-The user will get feedback if a field is invalid. Additionally, the user can search by their email to pre-fill the fields in the form. Those fields will then become read-only, as the user is not allowed to change them. Upon validating, the user is allowed to reset the user section should they want to fill it out differently. The date fields in the other sections will have a dependency on the travel dates filled out in the user section. Basically, the user is not allowed to book dates in the other sections are that are before the start date or after the end date.
+The user will get feedback if a field is invalid. Additionally, the user can search by their email to pre-fill the fields in the form. Those fields will then become read-only, as the user is not allowed to change them. Upon validating, the user is allowed to reset the user section should they want to fill it out differently.
 
 ### API for User
 

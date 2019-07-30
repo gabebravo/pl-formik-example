@@ -9,7 +9,6 @@ import {
   Typography
 } from '@material-ui/core';
 import { HotelSchema } from '../shared/schemas';
-import { HotelValidation } from '../shared/validation';
 import TextField from '../Fields/Text';
 import DateField from '../Fields/Date';
 import { useToggle } from '../../hooks';
@@ -40,9 +39,7 @@ export default function Hotel({ userIsValid }) {
     <div>
       <Formik
         initialValues={HotelSchema}
-        validationSchema={HotelValidation}
         render={props => {
-          // console.log('hotels:', props);
           return (
             <ExpansionPanel
               expanded={userIsValid && expanded}
@@ -62,33 +59,22 @@ export default function Hotel({ userIsValid }) {
                     label="Chain"
                     component={TextField}
                     section="hotel"
-                    isRequired
                   />
                   <Field
                     name="city"
                     label="City"
                     component={TextField}
                     section="hotel"
-                    isRequired
-                  />
-                  <Field
-                    name="days"
-                    label="Days"
-                    component={TextField}
-                    section="hotel"
-                    isRequired
                   />
                   <Field
                     name="checkInDate"
                     label="Start Date"
                     component={DateField}
-                    isRequired
                   />
                   <Field
                     name="leaveDate"
                     label="End Date"
                     component={DateField}
-                    isRequired
                   />
                 </div>
               </ExpansionPanelDetails>

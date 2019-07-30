@@ -17,35 +17,3 @@ export const UserValidation = Yup.object().shape({
     zip: Yup.string().required('Required')
   })
 });
-
-// Form level validation for Cars Schema
-export const CarValidation = Yup.object().shape({
-  make: Yup.string().required('Required'),
-  model: Yup.string().required('Required'),
-  year: Yup.string().required('Required'),
-  color: Yup.string().required('Required'),
-  pickupCity: Yup.string().required('Required'),
-  dropoffCity: Yup.string().required('Required')
-});
-
-// Form level validation for Cruises Schema
-export const CruiseValidation = Yup.object().shape({
-  line: Yup.string().required('Required'),
-  ship: Yup.string().required('Required'),
-  port: Yup.string().required('Required'),
-  days: Yup.string().required('Required')
-});
-
-// Form level validation for Flights Schema
-export const FlightValidation = Yup.object().shape({
-  airline: Yup.string().required('Required'),
-  fromCity: Yup.string().required('Required'),
-  toCity: Yup.string().required('Required')
-});
-
-// Form level validation for Hotels Schema
-export const HotelValidation = Yup.object().shape({
-  chain: Yup.string().required('Required'),
-  city: Yup.string().required('Required'),
-  days: Yup.string().required('Required')
-});

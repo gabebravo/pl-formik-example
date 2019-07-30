@@ -21,11 +21,7 @@ function App({ valid, values }) {
       <User />
       <Car userIsValid={valid.user} />
       <Cruise userIsValid={valid.user} />
-      <Flight
-        userIsValid={valid.user}
-        // userStartDate={(values.user && values.user.startDate) || ''}
-        // userEndDate={(values.user && values.user.endDate) || ''}
-      />
+      <Flight userIsValid={valid.user} />
       <Hotel userIsValid={valid.user} />
       <div style={{ flex: '1' }}>
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
