@@ -11,6 +11,8 @@ import {
 import { CarSchema } from '../shared/schemas';
 import TextField from '../Fields/Text';
 import { useToggle } from '../../hooks';
+import { connect } from 'react-redux';
+import { setValidationFlag, setSectionValues } from '../../redux/reducers';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -30,15 +32,33 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Car({ userIsValid, resetForm, ...props }) {
+function Car({
+  userIsValid,
+  resetForm,
+  setValidationFlag,
+  setSectionValues,
+  ...props
+}) {
   const classes = useStyles();
   const { expanded, toggle } = useToggle(false, userIsValid);
-  const { setValues, setTouched } = props;
+  const { setValues, setTouched, isValid, values } = props;
 
   React.useEffect(() => {
     setValues(CarSchema);
     setTouched({});
   }, [resetForm, setValues, setTouched]);
+
+  React.useEffect(() => {
+    // NOTE : this useEffect will trigger at the form-level
+    setValidationFlag({ section: 'car', isValid });
+  }, [isValid, setValidationFlag]);
+
+  React.useEffect(() => {
+    // NOTE : this useEffect will trigger at the form-level
+    setSectionValues({ section: 'car', values });
+  }, [values, setSectionValues]);
+
+  console.log('render car');
 
   return (
     <div>
@@ -94,3 +114,13 @@ export default function Car({ userIsValid, resetForm, ...props }) {
     </div>
   );
 }
+
+const mapStateToProps = state => ({
+  userIsValid: state.plTravel.valid.user,
+  resetForm: state.plTravel.formSubmitted
+});
+
+export default connect(
+  mapStateToProps,
+  { setValidationFlag, setSectionValues }
+)(Car);

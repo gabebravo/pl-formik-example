@@ -18,7 +18,7 @@ import Flight from '../sections/Flight';
 import Hotel from '../sections/Hotel';
 import { resetFormSubmitFlag } from '../redux/reducers';
 
-function App({ valid, values, resetFormSubmitFlag, formSubmitted }) {
+function App({ valid, values, resetFormSubmitFlag }) {
   function subitHandler() {
     const { user, car, cruise, flight, hotel } = values;
     const JSONpayload = { user, car, cruise, flight, hotel };
@@ -26,49 +26,28 @@ function App({ valid, values, resetFormSubmitFlag, formSubmitted }) {
     resetFormSubmitFlag();
   }
 
+  console.log('render app');
+
   return (
     <div>
       <Header headerText="PL Trip Planner" />
       <Formik
         initialValues={UserSchema}
         validationSchema={UserValidation}
-        render={props => <User {...props} resetForm={formSubmitted} />}
+        render={props => <User {...props} />}
       />
-      <Formik
-        initialValues={CarSchema}
-        render={props => (
-          <Car {...props} userIsValid={valid.user} resetForm={formSubmitted} />
-        )}
-      />
+      <Formik initialValues={CarSchema} render={props => <Car {...props} />} />
       <Formik
         initialValues={CruiseSchema}
-        render={props => (
-          <Cruise
-            {...props}
-            userIsValid={valid.user}
-            resetForm={formSubmitted}
-          />
-        )}
+        render={props => <Cruise {...props} />}
       />
       <Formik
         initialValues={FlightSchema}
-        render={props => (
-          <Flight
-            {...props}
-            userIsValid={valid.user}
-            resetForm={formSubmitted}
-          />
-        )}
+        render={props => <Flight {...props} />}
       />
       <Formik
         initialValues={HotelSchema}
-        render={props => (
-          <Hotel
-            {...props}
-            userIsValid={valid.user}
-            resetForm={formSubmitted}
-          />
-        )}
+        render={props => <Hotel {...props} />}
       />
       <div style={{ flex: '1' }}>
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
