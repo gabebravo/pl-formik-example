@@ -1,7 +1,22 @@
 import React from 'react';
+import { styled } from '@material-ui/styles';
 import { Button } from '@material-ui/core';
 import { resetFormSubmitFlag } from '../redux/reducers';
 import { connect } from 'react-redux';
+
+// ALT STYLING FORMAT : similar to StyledComponents
+const StyledButton = styled(Button)({
+  margin: '1rem'
+});
+
+const ButtonWrapper = styled('div')({
+  display: 'flex',
+  justifyContent: 'flex-end'
+});
+
+const RootWrapper = styled('div')({
+  flex: '1'
+});
 
 function SubmitButton({ valid, values, resetFormSubmitFlag }) {
   function subitHandler() {
@@ -12,9 +27,9 @@ function SubmitButton({ valid, values, resetFormSubmitFlag }) {
   }
 
   return (
-    <div style={{ flex: '1' }}>
-      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <Button
+    <RootWrapper>
+      <ButtonWrapper>
+        <StyledButton
           disabled={
             !(
               valid.user &&
@@ -24,12 +39,11 @@ function SubmitButton({ valid, values, resetFormSubmitFlag }) {
           onClick={subitHandler}
           variant="contained"
           color="primary"
-          style={{ margin: '1rem' }}
         >
           Submit
-        </Button>
-      </div>
-    </div>
+        </StyledButton>
+      </ButtonWrapper>
+    </RootWrapper>
   );
 }
 
