@@ -86,11 +86,7 @@ function SimpleSelect({
   );
 }
 
-const mapStateToProps = state => ({
-  readOnly: state.plTravel.readOnly
-});
-
 export default connect(
-  mapStateToProps,
+  null,
   { setValidationFlag, setSectionValues }
 )(SimpleSelect);
