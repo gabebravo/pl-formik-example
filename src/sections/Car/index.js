@@ -41,8 +41,6 @@ function Car({ userIsValid, resetForm, ...props }) {
     setTouched({});
   }, [resetForm, setValues, setTouched]);
 
-  console.log('render car');
-
   return (
     <div>
       <ExpansionPanel expanded={userIsValid && expanded} onChange={toggle}>

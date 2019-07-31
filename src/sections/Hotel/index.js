@@ -42,8 +42,6 @@ function Hotel({ userIsValid, resetForm, ...props }) {
     setTouched({});
   }, [resetForm, setValues, setTouched]);
 
-  console.log('render hotel');
-
   return (
     <div>
       <ExpansionPanel expanded={userIsValid && expanded} onChange={toggle}>

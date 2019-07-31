@@ -57,8 +57,6 @@ function User({ resetReadOnly, readOnly, resetForm, ...props }) {
     });
   }
 
-  console.log('render user');
-
   return (
     <div>
       <ExpansionPanel expanded={expanded} onChange={toggle}>

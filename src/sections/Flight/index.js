@@ -42,8 +42,6 @@ function Flight({ userIsValid, resetForm, ...props }) {
     setTouched({});
   }, [resetForm, setValues, setTouched]);
 
-  console.log('render flight');
-
   return (
     <div>
       <ExpansionPanel expanded={userIsValid && expanded} onChange={toggle}>

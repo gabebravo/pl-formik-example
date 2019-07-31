@@ -41,8 +41,6 @@ function Cruise({ userIsValid, resetForm, ...props }) {
     setTouched({});
   }, [resetForm, setValues, setTouched]);
 
-  console.log('render cruise');
-
   return (
     <div>
       <ExpansionPanel expanded={userIsValid && expanded} onChange={toggle}>
