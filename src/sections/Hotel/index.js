@@ -12,6 +12,7 @@ import { HotelSchema } from '../shared/schemas';
 import TextField from '../Fields/Text';
 import DateField from '../Fields/Date';
 import { useToggle } from '../../hooks';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -31,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Hotel({ userIsValid, resetForm, ...props }) {
+function Hotel({ userIsValid, resetForm, ...props }) {
   const classes = useStyles();
   const { expanded, toggle } = useToggle(false, userIsValid);
   const { setValues, setTouched } = props;
@@ -69,11 +70,27 @@ export default function Hotel({ userIsValid, resetForm, ...props }) {
               name="checkInDate"
               label="Start Date"
               component={DateField}
+              section="hotel"
             />
-            <Field name="leaveDate" label="End Date" component={DateField} />
+            <Field
+              name="leaveDate"
+              label="End Date"
+              component={DateField}
+              section="hotel"
+            />
           </div>
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>
   );
 }
+
+const mapStateToProps = state => ({
+  userIsValid: state.plTravel.valid.user,
+  resetForm: state.plTravel.formSubmitted
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(Hotel);

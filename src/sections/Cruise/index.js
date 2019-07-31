@@ -11,6 +11,7 @@ import {
 import { CruiseSchema } from '../shared/schemas';
 import TextField from '../Fields/Text';
 import { useToggle } from '../../hooks';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -30,7 +31,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Cruise({ userIsValid, resetForm, ...props }) {
+function Cruise({ userIsValid, resetForm, ...props }) {
   const classes = useStyles();
   const { expanded, toggle } = useToggle(false, userIsValid);
   const { setValues, setTouched } = props;
@@ -39,6 +40,8 @@ export default function Cruise({ userIsValid, resetForm, ...props }) {
     setValues(CruiseSchema);
     setTouched({});
   }, [resetForm, setValues, setTouched]);
+
+  console.log('render cruise');
 
   return (
     <div>
@@ -82,3 +85,13 @@ export default function Cruise({ userIsValid, resetForm, ...props }) {
     </div>
   );
 }
+
+const mapStateToProps = state => ({
+  userIsValid: state.plTravel.valid.user,
+  resetForm: state.plTravel.formSubmitted
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(Cruise);

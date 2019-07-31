@@ -28,7 +28,7 @@ function SimpleSelect({
   });
   const { label, list, readOnly = false, section = '' } = props;
 
-  React.useEffect(() => {
+  const updateValues = React.useCallback(() => {
     const newValues = {
       ...values,
       address: { ...values.address, state: value.state }
@@ -36,13 +36,17 @@ function SimpleSelect({
     setSectionValues({ section, values: newValues });
     setFieldValue(field.name, value.state);
   }, [
-    field.name,
-    value.state,
-    values,
-    section,
+    setSectionValues,
     setFieldValue,
-    setSectionValues
+    field.name,
+    section,
+    value.state,
+    values
   ]);
+
+  React.useEffect(() => {
+    updateValues();
+  }, [value.state, updateValues]);
 
   React.useEffect(() => {
     setValidationFlag({ section, isValid });
@@ -82,7 +86,11 @@ function SimpleSelect({
   );
 }
 
+const mapStateToProps = state => ({
+  readOnly: state.plTravel.readOnly
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   { setValidationFlag, setSectionValues }
 )(SimpleSelect);

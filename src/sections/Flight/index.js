@@ -12,6 +12,7 @@ import { FlightSchema } from '../shared/schemas';
 import TextField from '../Fields/Text';
 import DateField from '../Fields/Date';
 import { useToggle } from '../../hooks';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -31,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Flight({ userIsValid, resetForm, ...props }) {
+function Flight({ userIsValid, resetForm, ...props }) {
   const classes = useStyles();
   const { expanded, toggle } = useToggle(false, userIsValid);
   const { setValues, setTouched } = props;
@@ -75,11 +76,13 @@ export default function Flight({ userIsValid, resetForm, ...props }) {
               name="departureDate"
               label="Departure Date"
               component={DateField}
+              section="flight"
             />
             <Field
               name="returnDate"
               label="Return Date"
               component={DateField}
+              section="flight"
             />
           </div>
         </ExpansionPanelDetails>
@@ -87,3 +90,13 @@ export default function Flight({ userIsValid, resetForm, ...props }) {
     </div>
   );
 }
+
+const mapStateToProps = state => ({
+  userIsValid: state.plTravel.valid.user,
+  resetForm: state.plTravel.formSubmitted
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(Flight);

@@ -55,10 +55,30 @@ function Car({ userIsValid, resetForm, ...props }) {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <div>
-            <Field name="make" label="Make" component={TextField} />
-            <Field name="model" label="Model" component={TextField} />
-            <Field name="year" label="Year" component={TextField} />
-            <Field name="color" label="Color" component={TextField} />
+            <Field
+              name="make"
+              label="Make"
+              component={TextField}
+              section="car"
+            />
+            <Field
+              name="model"
+              label="Model"
+              component={TextField}
+              section="car"
+            />
+            <Field
+              name="year"
+              label="Year"
+              component={TextField}
+              section="car"
+            />
+            <Field
+              name="color"
+              label="Color"
+              component={TextField}
+              section="car"
+            />
             <Field
               name="pickupCity"
               label="Pickup City"

@@ -46,7 +46,6 @@ function User({ resetReadOnly, readOnly, resetForm, ...props }) {
   const { setValues, setTouched, touched, isValid } = props;
 
   React.useEffect(() => {
-    console.log('fell in here');
     setValues(UserSchema);
     setTouched({});
   }, [resetForm, setValues, setTouched]);
