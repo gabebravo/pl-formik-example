@@ -20,7 +20,7 @@ Test user: Sincere@april.biz
 
 ### Deployed version
 
-You can visit the deployed version here: [PL Travel Planer](https://reactjs.org/).
+Deployed version on Heroku: [PL Travel Planer](https://pl-trip-planner.herokuapp.com/).
 
 ##### TODO
 
