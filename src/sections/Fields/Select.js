@@ -4,6 +4,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import { connect } from 'react-redux';
+import { setValidationFlag, setSectionValues } from '../../redux/reducers';
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -12,9 +14,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function SimpleSelect({
+function SimpleSelect({
   field, // { name, value, onChange, onBlur }
-  form: { setFieldValue }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+  form: { values, isValid, setFieldValue }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+  setValidationFlag,
+  setSectionValues,
   ...props
 }) {
   const classes = useStyles();
@@ -22,11 +26,27 @@ export default function SimpleSelect({
     state: 'FL',
     name: 'Florida'
   });
-  const { label, list, readOnly = false } = props;
+  const { label, list, readOnly = false, section = '' } = props;
 
   React.useEffect(() => {
+    const newValues = {
+      ...values,
+      address: { ...values.address, state: value.state }
+    };
+    setSectionValues({ section, values: newValues });
     setFieldValue(field.name, value.state);
-  }, [value.state, field.name, setFieldValue]);
+  }, [
+    field.name,
+    value.state,
+    values,
+    section,
+    setFieldValue,
+    setSectionValues
+  ]);
+
+  React.useEffect(() => {
+    setValidationFlag({ section, isValid });
+  }, [isValid, section, setValidationFlag]);
 
   function handleChange(event) {
     setValues(oldValues => ({
@@ -61,3 +81,8 @@ export default function SimpleSelect({
     </>
   );
 }
+
+export default connect(
+  null,
+  { setValidationFlag, setSectionValues }
+)(SimpleSelect);

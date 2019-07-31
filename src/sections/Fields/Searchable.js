@@ -8,7 +8,11 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Search from '@material-ui/icons/Search';
 import { wasTouched, isInvalid, getErrorString } from '../shared/helpers';
-import { fetchUserData } from '../../redux/reducers';
+import {
+  fetchUserData,
+  setValidationFlag,
+  setSectionValues
+} from '../../redux/reducers';
 import { connect } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
@@ -20,11 +24,21 @@ const useStyles = makeStyles(theme => ({
 
 function Searchable({
   field, // { name, value, onChange, onBlur }
-  form: { touched, errors, setValues, validateForm }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+  form: { touched, errors, setValues, validateForm, values, isValid }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+  setValidationFlag,
+  setSectionValues,
   ...props
 }) {
   const classes = useStyles();
-  const { label, isRequired = false, readOnly = false } = props;
+  const { label, isRequired = false, readOnly = false, section = '' } = props;
+
+  React.useEffect(() => {
+    setValidationFlag({ section, isValid });
+  }, [isValid, section, setValidationFlag]);
+
+  React.useEffect(() => {
+    setSectionValues({ section, values });
+  }, [values, section, setSectionValues]);
 
   function handleSearch(evt) {
     // Sincere@april.biz
@@ -84,5 +98,5 @@ function Searchable({
 
 export default connect(
   null,
-  { fetchUserData }
+  { fetchUserData, setValidationFlag, setSectionValues }
 )(Searchable);

@@ -8,6 +8,7 @@ import blue from '@material-ui/core/colors/blue';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
+import SubmitButton from './components/SubmitButton';
 
 const theme = createMuiTheme({
   palette: {
@@ -44,7 +45,10 @@ const theme = createMuiTheme({
 ReactDOM.render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>
-      <App />
+      <div>
+        <App />
+        <SubmitButton />
+      </div>
     </ThemeProvider>
   </Provider>,
   document.getElementById('root')

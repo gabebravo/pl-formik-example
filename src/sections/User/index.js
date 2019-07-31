@@ -18,11 +18,7 @@ import SelectField from '../Fields/Select';
 import { STATES } from '../shared/constants';
 import { useToggle } from '../../hooks';
 import { connect } from 'react-redux';
-import {
-  resetReadOnly,
-  setValidationFlag,
-  setSectionValues
-} from '../../redux/reducers';
+import { resetReadOnly } from '../../redux/reducers';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -44,32 +40,16 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function User({
-  resetReadOnly,
-  readOnly,
-  resetForm,
-  setValidationFlag,
-  setSectionValues,
-  ...props
-}) {
+function User({ resetReadOnly, readOnly, resetForm, ...props }) {
   const classes = useStyles();
   const { expanded, toggle } = useToggle(true);
-  const { setValues, setTouched, touched, isValid, values } = props;
+  const { setValues, setTouched, touched, isValid } = props;
 
   React.useEffect(() => {
+    console.log('fell in here');
     setValues(UserSchema);
     setTouched({});
   }, [resetForm, setValues, setTouched]);
-
-  React.useEffect(() => {
-    // NOTE : this useEffect will trigger at the form-level
-    setValidationFlag({ section: 'user', isValid });
-  }, [isValid, setValidationFlag]);
-
-  React.useEffect(() => {
-    // NOTE : this useEffect will trigger at the form-level
-    setSectionValues({ section: 'user', values });
-  }, [values, setSectionValues]);
 
   function resetHandler() {
     resetReadOnly({
@@ -97,6 +77,7 @@ function User({
               label="Email"
               component={SearchableField}
               readOnly={readOnly}
+              section="user"
               isRequired
             />
             <Field
@@ -104,6 +85,7 @@ function User({
               label="First Name"
               component={TextField}
               readOnly={readOnly}
+              section="user"
               isRequired
             />
             <Field
@@ -111,6 +93,7 @@ function User({
               label="Last Name"
               component={TextField}
               readOnly={readOnly}
+              section="user"
               isRequired
             />
             <Field
@@ -118,6 +101,7 @@ function User({
               label="Line 1"
               component={TextField}
               readOnly={readOnly}
+              section="user"
               isRequired
             />
             <Field
@@ -125,6 +109,7 @@ function User({
               label="City"
               component={TextField}
               readOnly={readOnly}
+              section="user"
               isRequired
             />
             <Field
@@ -133,6 +118,7 @@ function User({
               list={STATES}
               component={SelectField}
               readOnly={readOnly}
+              section="user"
               isRequired
             />
             <Field
@@ -140,18 +126,21 @@ function User({
               label="Zip"
               component={TextField}
               readOnly={readOnly}
+              section="user"
               isRequired
             />
             <Field
               name="startDate"
               label="Start Date"
               component={DateField}
+              section="user"
               isRequired
             />
             <Field
               name="endDate"
               label="End Date"
               component={DateField}
+              section="user"
               isRequired
             />
             <div>
@@ -179,5 +168,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { resetReadOnly, setValidationFlag, setSectionValues }
+  { resetReadOnly }
 )(User);
