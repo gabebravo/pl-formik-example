@@ -10,7 +10,7 @@ function SubmitButton({ valid, values, resetFormSubmitFlag }) {
     console.log('JSONpayload:', JSONpayload);
     resetFormSubmitFlag();
   }
-  console.log('render submit button');
+
   return (
     <div style={{ flex: '1' }}>
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
