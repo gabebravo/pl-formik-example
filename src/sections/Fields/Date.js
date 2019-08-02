@@ -30,12 +30,12 @@ function DatePickers({
   }, [isValid, section, setValidationFlag]);
 
   function handleDateChange(event) {
-    const dateAsString = moment(event).format('MM/DD/YYYY');
+    const dateAsString = moment(event, 'MM/DD/YYYY');
     setFieldValue(field.name, dateAsString);
   }
 
   function handleBlur(event) {
-    const dateAsString = moment(event).format('MM/DD/YYYY');
+    const dateAsString = moment(event, 'MM/DD/YYYY');
     setFieldValue(props.name, dateAsString);
   }
 

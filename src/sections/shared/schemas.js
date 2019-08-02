@@ -11,8 +11,8 @@ export const UserSchema = {
     state: 'FL',
     zip: ''
   },
-  startDate: moment(new Date()).format('MM/DD/YYYY'),
-  endDate: moment(new Date()).format('MM/DD/YYYY')
+  startDate: moment(new Date(), 'MM/DD/YYYY'),
+  endDate: moment(new Date(), 'MM/DD/YYYY')
 };
 
 // Initial Values for Cars Schema
@@ -38,14 +38,14 @@ export const FlightSchema = {
   airline: '',
   fromCity: '',
   toCity: '',
-  departureDate: moment(new Date()).format('MM/DD/YYYY'),
-  returnDate: moment(new Date()).format('MM/DD/YYYY')
+  departureDate: moment(new Date(), 'MM/DD/YYYY'),
+  returnDate: moment(new Date(), 'MM/DD/YYYY')
 };
 
 // Initial Values for Hotels Schema
 export const HotelSchema = {
   chain: '',
   city: '',
-  checkInDate: moment(new Date()).format('MM/DD/YYYY'),
-  leaveDate: moment(new Date()).format('MM/DD/YYYY')
+  checkInDate: moment(new Date(), 'MM/DD/YYYY'),
+  leaveDate: moment(new Date(), 'MM/DD/YYYY')
 };

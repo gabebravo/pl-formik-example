@@ -3,6 +3,7 @@ import { styled } from '@material-ui/styles';
 import { Button } from '@material-ui/core';
 import { resetFormSubmitFlag } from '../redux/reducers';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 // ALT STYLING FORMAT : similar to StyledComponents
 const StyledButton = styled(Button)({
@@ -21,7 +22,25 @@ const RootWrapper = styled('div')({
 function SubmitButton({ valid, values, resetFormSubmitFlag }) {
   function subitHandler() {
     const { user, car, cruise, flight, hotel } = values;
-    const JSONpayload = { user, car, cruise, flight, hotel };
+    const JSONpayload = {
+      user: {
+        ...user,
+        startDate: moment(user.startDate).format('MM/DD/YYYY'),
+        endDate: moment(user.endDate).format('MM/DD/YYYY')
+      },
+      car,
+      cruise,
+      flight: {
+        ...flight,
+        departureDate: moment(flight.departureDate).format('MM/DD/YYYY'),
+        returnDate: moment(flight.returnDate).format('MM/DD/YYYY')
+      },
+      hotel: {
+        ...hotel,
+        checkInDate: moment(hotel.checkInDate).format('MM/DD/YYYY'),
+        leaveDate: moment(hotel.leaveDate).format('MM/DD/YYYY')
+      }
+    };
     console.log('JSONpayload:', JSONpayload);
     resetFormSubmitFlag();
   }
