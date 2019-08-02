@@ -17,27 +17,26 @@ const useStyles = makeStyles({
 
 function DatePickers({
   field, // { name, value, onChange, onBlur }
-  form: { touched, errors, setFieldValue, values, isValid }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+  form: { touched, errors, setFieldValue, isValid }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
   setValidationFlag,
   setSectionValues,
   ...props
 }) {
   const classes = useStyles();
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
   const { label, isRequired = false, section = '' } = props;
 
   React.useEffect(() => {
     setValidationFlag({ section, isValid });
   }, [isValid, section, setValidationFlag]);
 
-  React.useEffect(() => {
-    setSectionValues({ section, values });
-  }, [values, section, setSectionValues]);
-
   function handleDateChange(event) {
     const dateAsString = moment(event).format('MM/DD/YYYY');
     setFieldValue(field.name, dateAsString);
-    setSelectedDate(event);
+  }
+
+  function handleBlur(event) {
+    const dateAsString = moment(event).format('MM/DD/YYYY');
+    setFieldValue(props.name, dateAsString);
   }
 
   return (
@@ -46,8 +45,8 @@ function DatePickers({
         {...field}
         allowKeyboardControl
         className={classes.root}
-        value={selectedDate}
         onChange={handleDateChange}
+        onBlur={handleBlur}
         margin="normal"
         id="mui-pickers-date"
         label={label}
