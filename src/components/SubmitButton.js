@@ -50,6 +50,7 @@ function SubmitButton({ valid, values, resetFormSubmitFlag }) {
       <ButtonWrapper>
         <StyledButton
           disabled={
+            // needs User section to be valid + at least one other section
             !(
               valid.user &&
               (valid.car || valid.cruise || valid.flight || valid.hotel)
