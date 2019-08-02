@@ -22,47 +22,31 @@ function SimpleSelect({
   ...props
 }) {
   const classes = useStyles();
-  const [value, setValues] = React.useState({
-    state: 'FL',
-    name: 'Florida'
-  });
   const { label, list, readOnly = false, section = '' } = props;
-
-  const updateValues = React.useCallback(() => {
-    const newValues = {
-      ...values,
-      address: { ...values.address, state: value.state }
-    };
-    setSectionValues({ section, values: newValues });
-    setFieldValue(field.name, value.state);
-  }, [
-    setSectionValues,
-    setFieldValue,
-    field.name,
-    section,
-    value.state,
-    values
-  ]);
+  const newValues = {
+    ...values,
+    address: { ...values.address, state: field.value }
+  };
 
   React.useEffect(() => {
-    updateValues();
-  }, [value.state, updateValues]);
+    setSectionValues({ section, values: newValues });
+  }, [field.value, newValues, section, setSectionValues]);
 
   React.useEffect(() => {
     setValidationFlag({ section, isValid });
   }, [isValid, section, setValidationFlag]);
 
   function handleChange(event) {
-    setValues(oldValues => ({
-      ...oldValues,
-      [event.target.name]: event.target.value
-    }));
+    const { value } = event.target;
+
+    setFieldValue(field.name, value);
+    field.onBlur(event);
   }
 
   const renderMenuItems = objArr =>
     objArr.map(stateObj => (
-      <MenuItem key={stateObj.state} value={stateObj.state}>
-        {stateObj.name}
+      <MenuItem key={stateObj.label} value={stateObj.value}>
+        {stateObj.label}
       </MenuItem>
     ));
 
@@ -71,7 +55,7 @@ function SimpleSelect({
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="state-simple">{label}</InputLabel>
         <Select
-          value={value.state}
+          value={field.value}
           onChange={handleChange}
           disabled={readOnly}
           inputProps={{
