@@ -81,11 +81,13 @@ function Car({ userIsValid, resetForm, ...props }) {
               name="pickupCity"
               label="Pickup City"
               component={TextField}
+              section="car"
             />
             <Field
               name="dropoffCity"
               label="Dropoff City"
               component={TextField}
+              section="car"
             />
           </div>
         </ExpansionPanelDetails>
