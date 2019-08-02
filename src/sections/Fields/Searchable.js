@@ -32,13 +32,17 @@ function Searchable({
   const classes = useStyles();
   const { label, isRequired = false, readOnly = false, section = '' } = props;
 
-  React.useEffect(() => {
-    setValidationFlag({ section, isValid });
-  }, [isValid, section, setValidationFlag]);
-
-  React.useEffect(() => {
+  function handleChange(event) {
+    field.onChange(event);
     setSectionValues({ section, values });
-  }, [values, section, setSectionValues]);
+    setValidationFlag({ section, isValid });
+  }
+
+  function handleBlur(event) {
+    field.onBlur(event);
+    setSectionValues({ section, values });
+    setValidationFlag({ section, isValid });
+  }
 
   function handleSearch(evt) {
     // Sincere@april.biz
@@ -67,6 +71,8 @@ function Searchable({
         </InputLabel>
         <Input
           {...field}
+          onChange={handleChange}
+          onBlur={handleBlur}
           disabled={readOnly}
           required={isRequired}
           error={

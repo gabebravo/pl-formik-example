@@ -36,6 +36,7 @@ function SimpleSelect({
     setValidationFlag({ section, isValid });
   }, [isValid, section, setValidationFlag]);
 
+  // have to manually set field value because of setFieldValue using field.name
   function handleChange(event) {
     const { value } = event.target;
 

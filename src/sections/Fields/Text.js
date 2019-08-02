@@ -33,19 +33,23 @@ function Text({
   const classes = useStyles();
   const { label, isRequired = false, readOnly = false, section = '' } = props;
 
-  React.useEffect(() => {
-    // NOTE : this useEffect will trigger at the form-level
-    setValidationFlag({ section, isValid });
-  }, [isValid, section, setValidationFlag]);
-
-  React.useEffect(() => {
-    // NOTE : this useEffect will trigger at the form-level
+  function handleChange(event) {
+    field.onChange(event);
     setSectionValues({ section, values });
-  }, [values, section, setSectionValues]);
+    setValidationFlag({ section, isValid });
+  }
+
+  function handleBlur(event) {
+    field.onBlur(event);
+    setSectionValues({ section, values });
+    setValidationFlag({ section, isValid });
+  }
 
   return (
     <TextField
       {...field}
+      onChange={handleChange}
+      onBlur={handleBlur}
       disabled={readOnly}
       label={label}
       className={classes.textField}
