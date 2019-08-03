@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
 
 function Car({ userIsValid, resetForm, ...props }) {
   const classes = useStyles();
-  const { expanded, toggle } = useToggle(false, userIsValid);
+  const { expanded, toggle } = useToggle(false, userIsValid, resetForm);
   const { setValues, setTouched } = props;
 
   React.useEffect(() => {
