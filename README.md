@@ -4,7 +4,7 @@ This project uses the following technologies: CRA, React, Hooks, Redux, Thunks, 
 
 ### Overview
 
-The app simulates a trip planner for the purposes of travel. There are five available sections. By default the User expansion Panel is open. Once the user fills is out correclty, and the fields validate, the other sections will be available to open. In order to submit, the User section and at least one other section must be filled out and validate. Once those requirements are met, the user can submit the form. At this point, the form fields should reset, and an alert will open with the JSON payload that is being mimiced that would be sent upon submission.
+The app simulates a trip planner for the purposes of travel. There are five available sections. By default the User expansion Panel is open. Once the user fills it out correclty, and the fields validate, the other sections will be available to open. In order to submit, the User section and at least one other section must be filled out and validate. Once those requirements are met, the user can submit the form. At this point, the form fields should reset, and an alert will open with the JSON payload that is being mimiced that would be sent upon submission.
 
 ### Other features
 
