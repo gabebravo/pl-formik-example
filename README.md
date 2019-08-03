@@ -25,4 +25,4 @@ Deployed version on Heroku: [PL Travel Planer](https://pl-trip-planner.herokuapp
 ##### TODO
 
 Make API call function more flexible - use other search params<br>
-Add modal to handle scenario where no users are found
+Add modal to handle scenario where no users are found / email invalid
